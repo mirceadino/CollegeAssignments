@@ -1,0 +1,120 @@
+syrup / words1.txt:
+0.000881s
+0.000019s
+anagram / words1.txt:
+0.000799s
+0.000016s
+banana / words1.txt:
+0.000789s
+0.000004s
+teacher / words1.txt:
+0.000752s
+0.000003s
+structure / words1.txt:
+0.000656s
+0.000004s
+abcdef / words1.txt:
+0.000960s
+0.000006s
+dead / words1.txt:
+0.000609s
+0.000003s
+outs / words1.txt:
+0.000864s
+0.000004s
+syrup / words2.txt:
+0.019728s
+0.000007s
+anagram / words2.txt:
+0.016608s
+0.000004s
+banana / words2.txt:
+0.014760s
+0.000004s
+teacher / words2.txt:
+0.014158s
+0.000004s
+structure / words2.txt:
+0.013190s
+0.000005s
+abcdef / words2.txt:
+0.012727s
+0.000004s
+dead / words2.txt:
+0.013047s
+0.000003s
+outs / words2.txt:
+0.012157s
+0.000004s
+syrup / words3.txt:
+0.101918s
+0.000005s
+anagram / words3.txt:
+0.096781s
+0.000023s
+banana / words3.txt:
+0.100771s
+0.000019s
+teacher / words3.txt:
+0.099839s
+0.000021s
+structure / words3.txt:
+0.116189s
+0.000023s
+abcdef / words3.txt:
+0.097262s
+0.000009s
+dead / words3.txt:
+0.099646s
+0.000014s
+outs / words3.txt:
+0.099622s
+0.000025s
+syrup / words4.txt:
+0.171072s
+0.000007s
+anagram / words4.txt:
+0.164860s
+0.000019s
+banana / words4.txt:
+0.161575s
+0.000005s
+teacher / words4.txt:
+0.157673s
+0.000025s
+structure / words4.txt:
+0.154532s
+0.000020s
+abcdef / words4.txt:
+0.164664s
+0.000004s
+dead / words4.txt:
+0.156400s
+0.000004s
+outs / words4.txt:
+0.194611s
+0.000030s
+syrup / words5.txt:
+6.267036s
+0.000026s
+anagram / words5.txt:
+6.458672s
+0.000036s
+banana / words5.txt:
+6.099950s
+0.000031s
+teacher / words5.txt:
+6.231262s
+0.000039s
+structure / words5.txt:
+5.911865s
+0.000034s
+abcdef / words5.txt:
+6.086520s
+0.000007s
+dead / words5.txt:
+6.206660s
+0.000026s
+outs / words5.txt:
+5.961347s
+0.000029s
