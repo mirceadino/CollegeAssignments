@@ -1,1 +1,1 @@
-# College-Assignments
+# CollegeAssignments
