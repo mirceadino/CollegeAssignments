@@ -1,0 +1,68 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module StatsController</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>StatsController</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href="NABManagement.html">index</a><br><a href="file:/home/mirko/Documents/facultate/fp/labs/labs5-8/NABManagement/controller/StatsController.py">/home/mirko/Documents/facultate/fp/labs/labs5-8/NABManagement/controller/StatsController.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="#StatsController">StatsController</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="StatsController">class <strong>StatsController</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;used&nbsp;for&nbsp;handling&nbsp;the&nbsp;operations&nbsp;regarding&nbsp;statistics.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="StatsController-__init__"><strong>__init__</strong></a>(self, personRepo, activityRepo)</dt><dd><tt>Constructor&nbsp;for&nbsp;the&nbsp;class&nbsp;<a href="#StatsController">StatsController</a>.<br>
+:param&nbsp;personRepo:&nbsp;PersonRepository&nbsp;-&nbsp;repository&nbsp;containing&nbsp;people<br>
+:param&nbsp;activityRepo:&nbsp;ActivityRepository-&nbsp;repository&nbsp;containing&nbsp;activities<br>
+:exception&nbsp;NABException:&nbsp;if&nbsp;one&nbsp;of&nbsp;the&nbsp;parameters&nbsp;is&nbsp;not&nbsp;valid</tt></dd></dl>
+
+<dl><dt><a name="StatsController-activities_for_person_alphabetically"><strong>activities_for_person_alphabetically</strong></a>(self, id)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;activities&nbsp;performed&nbsp;by&nbsp;the&nbsp;person&nbsp;with&nbsp;the&nbsp;indicated&nbsp;ID&nbsp;alphabetically&nbsp;by&nbsp;description.<br>
+:param&nbsp;id:&nbsp;positive&nbsp;integer&nbsp;-&nbsp;person's&nbsp;ID<br>
+:return:&nbsp;list&nbsp;of&nbsp;Activity&nbsp;as&nbsp;specified<br>
+:exception&nbsp;NABException:&nbsp;if&nbsp;one&nbsp;of&nbsp;the&nbsp;parameters&nbsp;is&nbsp;not&nbsp;valid</tt></dd></dl>
+
+<dl><dt><a name="StatsController-activities_for_person_by_date"><strong>activities_for_person_by_date</strong></a>(self, id)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;activities&nbsp;performed&nbsp;by&nbsp;the&nbsp;person&nbsp;with&nbsp;the&nbsp;indicated&nbsp;ID&nbsp;by&nbsp;date.<br>
+:param&nbsp;id:&nbsp;positive&nbsp;integer&nbsp;-&nbsp;person's&nbsp;ID<br>
+:return:&nbsp;list&nbsp;of&nbsp;Activity&nbsp;as&nbsp;specified<br>
+:exception&nbsp;NABException:&nbsp;if&nbsp;one&nbsp;of&nbsp;the&nbsp;parameters&nbsp;is&nbsp;not&nbsp;valid</tt></dd></dl>
+
+<dl><dt><a name="StatsController-activities_in_interval_alphabetically"><strong>activities_in_interval_alphabetically</strong></a>(self, date1, date2)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;activities&nbsp;performed&nbsp;in&nbsp;the&nbsp;indicated&nbsp;interval&nbsp;alphabetically&nbsp;by&nbsp;description.<br>
+:param&nbsp;date1:&nbsp;string&nbsp;-&nbsp;start&nbsp;date&nbsp;in&nbsp;a&nbsp;valid&nbsp;format<br>
+:param&nbsp;date1:&nbsp;string&nbsp;-&nbsp;end&nbsp;date&nbsp;in&nbsp;a&nbsp;valid&nbsp;format<br>
+:return:&nbsp;list&nbsp;of&nbsp;Activity&nbsp;as&nbsp;specified<br>
+:exception&nbsp;NABException:&nbsp;if&nbsp;one&nbsp;of&nbsp;the&nbsp;parameters&nbsp;is&nbsp;not&nbsp;valid</tt></dd></dl>
+
+<dl><dt><a name="StatsController-activities_in_interval_by_date"><strong>activities_in_interval_by_date</strong></a>(self, date1, date2)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;activities&nbsp;performed&nbsp;in&nbsp;the&nbsp;indicated&nbsp;interval&nbsp;by&nbsp;date.<br>
+:param&nbsp;date1:&nbsp;string&nbsp;-&nbsp;start&nbsp;date&nbsp;in&nbsp;a&nbsp;valid&nbsp;format<br>
+:param&nbsp;date1:&nbsp;string&nbsp;-&nbsp;end&nbsp;date&nbsp;in&nbsp;a&nbsp;valid&nbsp;format<br>
+:return:&nbsp;list&nbsp;of&nbsp;Activity&nbsp;as&nbsp;specified<br>
+:exception&nbsp;NABException:&nbsp;if&nbsp;one&nbsp;of&nbsp;the&nbsp;parameters&nbsp;is&nbsp;not&nbsp;valid</tt></dd></dl>
+
+<dl><dt><a name="StatsController-people_with_activities_in_interval"><strong>people_with_activities_in_interval</strong></a>(self, date1, date2)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;people&nbsp;who&nbsp;perform&nbsp;activities&nbsp;in&nbsp;the&nbsp;indicated&nbsp;interval.<br>
+:param&nbsp;date1:&nbsp;string&nbsp;-&nbsp;start&nbsp;date&nbsp;in&nbsp;a&nbsp;valid&nbsp;format<br>
+:param&nbsp;date1:&nbsp;string&nbsp;-&nbsp;end&nbsp;date&nbsp;in&nbsp;a&nbsp;valid&nbsp;format<br>
+:return:&nbsp;list&nbsp;of&nbsp;Person&nbsp;as&nbsp;specified<br>
+:exception&nbsp;NABException:&nbsp;if&nbsp;one&nbsp;of&nbsp;the&nbsp;parameters&nbsp;is&nbsp;not&nbsp;valid</tt></dd></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>
