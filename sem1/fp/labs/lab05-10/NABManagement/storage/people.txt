@@ -1,6 +1,0 @@
-1 | Mike Carpenter | 405-100-4204 | 192 Baker Street
-3 | John Carpenter | 425-180-1000 | 1 Main Street
-4 | Mary-Jane Jackson | 412-000-2323 | 10 Baker's Street
-9 | Victoria-Mary Philips | 410-249-2494 | 11 Jules Verne Alley
-10 | Charlie Philips | 515-515-5151 | 11 Jules Verne Alley
-23 | Michael Newman | 515-515-5151 | 7 Opera Boulevard

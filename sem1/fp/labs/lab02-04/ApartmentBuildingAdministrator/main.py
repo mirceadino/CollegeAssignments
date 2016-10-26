@@ -1,3 +1,0 @@
-import console
-
-console.main()
