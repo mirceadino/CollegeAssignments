@@ -34,4 +34,9 @@ public class OutputImpl<S> implements Output<S> {
         string.append("}");
         return string.toString();
     }
+
+    @Override
+    public Iterable<S> getAll() {
+        return outputs;
+    }
 }

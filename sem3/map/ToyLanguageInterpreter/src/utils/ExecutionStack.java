@@ -13,4 +13,6 @@ public interface ExecutionStack<S> {
     boolean isEmpty();
 
     String toString();
+
+    Iterable<S> getAll();
 }

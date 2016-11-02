@@ -43,6 +43,7 @@ public class Controller {
         ProgramState currentProgram = repository.getCurrentProgramState();
         while (!currentProgram.getExecutionStack().isEmpty()) {
             executeOneStep(currentProgram);
+            repository.logCurrentProgramState();
         }
     }
 

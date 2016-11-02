@@ -324,7 +324,7 @@ public class TextView {
     }
 
     public static void main(String[] args) {
-        Repository repository = new SingleProgramStateRepository();
+        Repository repository = new SingleProgramStateRepository("./logs/alllogs.txt");
         Controller controller = new Controller(repository);
         TextView textView = new TextView(controller, new Scanner(System.in), new PrintWriter(System.out));
 

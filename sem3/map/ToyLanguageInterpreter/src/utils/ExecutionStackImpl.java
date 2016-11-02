@@ -1,15 +1,17 @@
 package utils;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 /**
  * Created by mirko on 12/10/2016.
  */
 public class ExecutionStackImpl<S> implements ExecutionStack<S> {
-    private Stack<S> stack;
+    private Deque<S> stack;
 
     public ExecutionStackImpl() {
-        stack = new Stack<S>();
+        stack = new ArrayDeque<S>();
     }
 
     @Override
@@ -37,20 +39,16 @@ public class ExecutionStackImpl<S> implements ExecutionStack<S> {
             string.append("\n");
         }
 
-        Stack<S> reversed_stack = new Stack<S>();
-
-        while (!stack.empty()) {
-            S statement = stack.pop();
-            reversed_stack.push(statement);
+        for (S statement : stack) {
             string.append("   " + statement.toString() + "\n");
-        }
-
-        while (!reversed_stack.empty()) {
-            S statement = reversed_stack.pop();
-            stack.push(statement);
         }
 
         string.append("}");
         return string.toString();
+    }
+
+    @Override
+    public Iterable<S> getAll() {
+        return stack;
     }
 }

@@ -43,4 +43,9 @@ public class SymbolTableImpl<K, V> implements SymbolTable<K, V> {
         string.append("}");
         return string.toString();
     }
+
+    @Override
+    public Iterable<Map.Entry<K, V>> getAll() {
+        return symbolTable.entrySet();
+    }
 }

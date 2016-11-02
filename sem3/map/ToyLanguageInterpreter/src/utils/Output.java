@@ -7,5 +7,7 @@ public interface Output<S> {
     void add(S output);
 
     String toString();
+
+    Iterable<S> getAll();
 }
 
