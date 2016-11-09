@@ -1,5 +1,7 @@
-package model;
+package model.statements;
 
+import model.ProgramState;
+import model.expressions.Expression;
 import utils.SymbolTable;
 
 /**

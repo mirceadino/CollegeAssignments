@@ -1,7 +1,7 @@
 package repository;
 
 import model.ProgramState;
-import model.Statement;
+import model.statements.Statement;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

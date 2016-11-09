@@ -25,7 +25,7 @@ public class SymbolTableImpl<K, V> implements SymbolTable<K, V> {
 
     @Override
     public V getValue(K key) {
-        if (!contains(key)) throw new RuntimeException("error: key \"" + key + "\" doesn't exist");
+        if (!contains(key)) throw new RuntimeException("error: key \"" + key + "\" doesn't exist in symbol table");
         return symbolTable.get(key);
     }
 

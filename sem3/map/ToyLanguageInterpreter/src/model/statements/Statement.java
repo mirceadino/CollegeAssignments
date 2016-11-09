@@ -1,4 +1,6 @@
-package model;
+package model.statements;
+
+import model.ProgramState;
 
 /**
  * Created by mirko on 12/10/2016.

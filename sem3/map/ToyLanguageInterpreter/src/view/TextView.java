@@ -1,7 +1,10 @@
 package view;
 
 import controller.Controller;
-import model.*;
+import model.expressions.ArithExpr;
+import model.expressions.ConstExpr;
+import model.expressions.VarExpr;
+import model.statements.*;
 import repository.Repository;
 import repository.SingleProgramStateRepository;
 
@@ -66,7 +69,7 @@ public class TextView {
     }
 
     private void inputProgram() {
-        printer.print("Choose program (0 - 5): ");
+        printer.print("Choose program (0 - 6): ");
         printer.flush();
         int option = scanner.nextInt();
 
@@ -91,7 +94,6 @@ public class TextView {
             printer.println(controller.currentProgramToString());
             printer.flush();
         } catch (RuntimeException error) {
-            printer.println(controller.currentProgramToString());
             printer.println(error.toString());
             printer.flush();
         }
@@ -103,7 +105,6 @@ public class TextView {
             printer.println(controller.currentProgramToString());
             printer.flush();
         } catch (RuntimeException error) {
-            printer.println(controller.currentProgramToString());
             printer.println(error.toString());
             printer.flush();
         }
@@ -311,6 +312,28 @@ public class TextView {
                                                         )
                                                 )
                                         )
+                                )
+                        )
+                );
+            }
+
+            case 6: {
+                return new CompoundStatement(
+                        new OpenRFileStatement("var_f", "test.in"),
+                        new CompoundStatement(
+                                new ReadFileStatement(new VarExpr("var_f"), "var_c"),
+                                new CompoundStatement(
+                                        new PrintStatement(new VarExpr("var_c")),
+                                        new CompoundStatement(
+                                                new IfStatement(
+                                                        new VarExpr("var_c"),
+                                                        new CompoundStatement(
+                                                                new ReadFileStatement(new VarExpr("var_f"), "var_c"),
+                                                                new PrintStatement(new VarExpr("var_c"))
+                                                        ),
+                                                        new PrintStatement(new ConstExpr(0))
+                                                ),
+                                                new CloseRFileStatement(new VarExpr("var_f")))
                                 )
                         )
                 );

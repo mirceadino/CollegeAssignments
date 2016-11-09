@@ -1,7 +1,5 @@
 package utils;
 
-import model.Statement;
-
 /**
  * Created by mirko on 12/10/2016.
  */

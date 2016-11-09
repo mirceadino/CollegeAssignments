@@ -1,9 +1,11 @@
 package controller;
 
 import model.ProgramState;
-import model.Statement;
+import model.statements.Statement;
 import repository.Repository;
 import utils.*;
+
+import java.io.BufferedReader;
 
 /**
  * Created by mirko on 12/10/2016.
@@ -16,13 +18,15 @@ public class Controller {
     }
 
     public void addProgram(Statement statement) {
-        ExecutionStack<Statement> executionStack = new ExecutionStackImpl<Statement>();
-        SymbolTable<String, Integer> symbolTable = new SymbolTableImpl<String, Integer>();
+        ExecutionStack<Statement> executionStack = new ExecutionStackImpl<>();
+        SymbolTable<String, Integer> symbolTable = new SymbolTableImpl<>();
+        FileTable<Integer, FileData<String, BufferedReader>> fileTable = new FileTableImpl<>();
+        FileDescriptorGenerator generator = new FileDescriptorGeneratorImpl();
         Output<String> output = new OutputImpl<String>();
 
         executionStack.push(statement);
 
-        ProgramState program = new ProgramState(executionStack, symbolTable, output);
+        ProgramState program = new ProgramState(executionStack, symbolTable, fileTable, generator, output);
         repository.add(program);
     }
 

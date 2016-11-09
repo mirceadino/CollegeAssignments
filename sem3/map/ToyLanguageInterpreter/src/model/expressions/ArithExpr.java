@@ -1,4 +1,4 @@
-package model;
+package model.expressions;
 
 import utils.SymbolTable;
 
