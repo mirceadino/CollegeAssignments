@@ -4,6 +4,7 @@ import model.ProgramState;
 import model.expressions.Expression;
 import utils.ExecutionStack;
 import utils.SymbolTable;
+import utils.exceptions.InterpreterException;
 
 /**
  * Created by mirko on 18/10/2016.
@@ -20,7 +21,7 @@ public class IfStatement implements Statement {
     }
 
     @Override
-    public ProgramState execute(ProgramState programState) {
+    public ProgramState execute(ProgramState programState) throws InterpreterException {
         ExecutionStack<Statement>executionStack = programState.getExecutionStack();
         SymbolTable<String, Integer> symbolTable = programState.getSymbolTable();
 

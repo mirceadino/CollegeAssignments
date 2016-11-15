@@ -1,5 +1,7 @@
 package utils;
 
+import utils.exceptions.InterpreterException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +26,8 @@ public class SymbolTableImpl<K, V> implements SymbolTable<K, V> {
     }
 
     @Override
-    public V getValue(K key) {
-        if (!contains(key)) throw new RuntimeException("error: key \"" + key + "\" doesn't exist in symbol table");
+    public V getValue(K key) throws InterpreterException {
+        if (!contains(key)) throw new InterpreterException("error: key \"" + key + "\" doesn't exist in symbol table");
         return symbolTable.get(key);
     }
 

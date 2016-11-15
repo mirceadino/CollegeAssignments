@@ -1,122 +1,50 @@
-package view;
+package view.commands;
 
 import controller.Controller;
 import model.expressions.ArithExpr;
 import model.expressions.ConstExpr;
 import model.expressions.VarExpr;
 import model.statements.*;
-import repository.Repository;
-import repository.SingleProgramStateRepository;
 import utils.exceptions.InterpreterException;
-
-import java.io.PrintWriter;
-import java.util.Scanner;
+import view.TextMenu;
 
 /**
- * Created by mirko on 18/10/2016.
+ * Created by mirko on 15/11/2016.
  */
-public class TextView {
+public class ChooseProgramCommand extends Command {
     private Controller controller;
-    private Scanner scanner;
-    private PrintWriter printer;
 
-    public TextView(Controller controller, Scanner scanner, PrintWriter printer) {
+    public ChooseProgramCommand(String key, String description, Controller controller) {
+        super(key, description);
         this.controller = controller;
-        this.scanner = scanner;
-        this.printer = printer;
     }
 
-    public void run() throws InterpreterException {
+    @Override
+    public void execute() throws InterpreterException {
+        TextMenu menu = new TextMenu();
+
+        int index = 1;
         while (true) {
-            printMenu();
-
-            printer.print("Choose option: ");
-            printer.flush();
-            int option = scanner.nextInt();
-
-            if (option == 0) {
-                exit();
+            Statement program = getProgram(index);
+            if (program == null) {
                 break;
             }
 
-            switch (option) {
-                case 1: {
-                    inputProgram();
-                    break;
-                }
-                case 2: {
-                    executeOneStep();
-                    break;
-                }
-                case 3: {
-                    executeAllSteps();
-                    break;
-                }
-                default: {
-                    printer.println("Option doesn't exist.");
-                    printer.flush();
-                    break;
-                }
-            }
+            menu.addCommand(new ChooseExampleCommand(
+                    "" + index, "Choose example " + index + "\n       " + program,
+                    controller,
+                    program,
+                    "./logs/log" + index + ".txt")
+            );
+            ++index;
         }
+
+        menu.addCommand(new ExitCommand("0", "Exit submenu"));
+
+        menu.show();
     }
 
-    private void printMenu() {
-        printer.println("1 - Choose program");
-        printer.println("2 - Execute one step of the current program");
-        printer.println("3 - Execute all steps of the current program");
-        printer.println("0 - Exit");
-        printer.flush();
-    }
-
-    private void inputProgram() throws InterpreterException {
-        printer.print("Choose program (0 - 7): ");
-        printer.flush();
-        int option = scanner.nextInt();
-
-        Statement program = getProgramByOption(option);
-
-        if (program != null) {
-            controller.addProgram(program);
-            printer.println(controller.currentProgramToString());
-            printer.flush();
-
-            printer.println("Program was set as current.");
-            printer.flush();
-        } else {
-            printer.println("Program doesn't exist.");
-            printer.flush();
-        }
-    }
-
-    private void executeOneStep() {
-        try {
-            controller.executeOneStep(controller.getCurrentProgram());
-            printer.println(controller.currentProgramToString());
-            printer.flush();
-        } catch (InterpreterException error) {
-            printer.println(error.toString());
-            printer.flush();
-        }
-    }
-
-    private void executeAllSteps() {
-        try {
-            controller.executeAllSteps();
-            printer.println(controller.currentProgramToString());
-            printer.flush();
-        } catch (InterpreterException error) {
-            printer.println(error.toString());
-            printer.flush();
-        }
-    }
-
-    private void exit() {
-        printer.println("Bye!");
-        printer.flush();
-    }
-
-    private Statement getProgramByOption(int option) {
+    private Statement getProgram(int option) {
         switch (option) {
             case 0: {
                 /* a = 3; */
@@ -411,13 +339,5 @@ public class TextView {
             }
         }
 
-    }
-
-    public static void main(String[] args) throws InterpreterException {
-        Repository repository = new SingleProgramStateRepository("./logs/alllogs.txt");
-        Controller controller = new Controller(repository);
-        TextView textView = new TextView(controller, new Scanner(System.in), new PrintWriter(System.out));
-
-        textView.run();
     }
 }

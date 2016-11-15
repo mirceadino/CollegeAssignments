@@ -5,6 +5,7 @@ import model.expressions.ConstExpr;
 import model.expressions.Expression;
 import utils.FileData;
 import utils.FileTable;
+import utils.exceptions.InterpreterException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class ReadFileStatement implements Statement {
     }
 
     @Override
-    public ProgramState execute(ProgramState programState) {
+    public ProgramState execute(ProgramState programState) throws InterpreterException {
         try {
             int descriptor = fileDescriptor.evaluate(programState.getSymbolTable());
             FileTable<Integer, FileData<String, BufferedReader>> fileTable = programState.getFileTable();
@@ -42,7 +43,7 @@ public class ReadFileStatement implements Statement {
             return assignment.execute(programState);
 
         } catch (IOException e) {
-            throw new RuntimeException("error: file could not be read");
+            throw new InterpreterException("error: file could not be read");
         }
     }
 

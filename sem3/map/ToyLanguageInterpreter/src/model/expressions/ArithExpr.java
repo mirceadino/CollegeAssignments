@@ -1,6 +1,7 @@
 package model.expressions;
 
 import utils.SymbolTable;
+import utils.exceptions.InterpreterException;
 
 /**
  * Created by mirko on 12/10/2016.
@@ -17,7 +18,7 @@ public class ArithExpr implements Expression {
     }
 
     @Override
-    public int evaluate(SymbolTable<String, Integer> symTable) {
+    public int evaluate(SymbolTable<String, Integer> symTable) throws InterpreterException {
         int firstResult = first.evaluate(symTable);
         int secondResult = second.evaluate(symTable);
 
@@ -29,11 +30,11 @@ public class ArithExpr implements Expression {
             case '*':
                 return firstResult * secondResult;
             case '/': {
-                if (secondResult == 0) throw new RuntimeException("error: division by zero");
+                if (secondResult == 0) throw new InterpreterException("error: division by zero");
                 return firstResult / secondResult;
             }
             default:
-                throw new RuntimeException("error: invalid operator");
+                throw new InterpreterException("error: invalid operator");
         }
     }
 

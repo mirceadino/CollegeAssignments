@@ -1,5 +1,7 @@
 package utils;
 
+import utils.exceptions.InterpreterException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,8 +31,8 @@ public class FileTableImpl<K, V> implements FileTable<K, V> {
     }
 
     @Override
-    public V getValue(K key) {
-        if (!contains(key)) throw new RuntimeException("error: key \"" + key + "\" doesn't exist in file table");
+    public V getValue(K key) throws InterpreterException {
+        if (!contains(key)) throw new InterpreterException("error: key \"" + key + "\" doesn't exist in file table");
         return fileTable.get(key);
     }
 

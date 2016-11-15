@@ -1,6 +1,7 @@
 package repository;
 
 import model.ProgramState;
+import utils.exceptions.InterpreterException;
 
 /**
  * Created by mirko on 12/10/2016.
@@ -8,7 +9,7 @@ import model.ProgramState;
 public interface Repository {
     void add(ProgramState programState);
 
-    ProgramState getCurrentProgramState();
+    ProgramState getCurrentProgramState() throws InterpreterException;
 
-    void logCurrentProgramState();
+    void logCurrentProgramState() throws InterpreterException;
 }

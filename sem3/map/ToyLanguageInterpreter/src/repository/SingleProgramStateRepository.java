@@ -2,11 +2,10 @@ package repository;
 
 import model.ProgramState;
 import model.statements.Statement;
+import utils.FileData;
+import utils.exceptions.InterpreterException;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Map;
 
 /**
@@ -26,33 +25,39 @@ public class SingleProgramStateRepository implements Repository {
     }
 
     @Override
-    public ProgramState getCurrentProgramState() {
-        if (programState == null) throw new RuntimeException("error: no program to execute");
+    public ProgramState getCurrentProgramState() throws InterpreterException {
+        if (programState == null) throw new InterpreterException("error: no program to execute");
         return programState;
     }
 
     @Override
-    public void logCurrentProgramState() {
+    public void logCurrentProgramState() throws InterpreterException {
         try (PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)))) {
             logFile.append("Execution Stack\n");
             for (Statement statement : programState.getExecutionStack().getAll()) {
-                logFile.append(statement + "\n");
+                logFile.append("  " + statement + "\n");
             }
             logFile.append("\n");
 
             logFile.append("Symbol Table\n");
             for (Map.Entry<String, Integer> entry : programState.getSymbolTable().getAll()) {
-                logFile.append(entry.getKey() + " --> " + entry.getValue() + "\n");
+                logFile.append("  " + entry.getKey() + " --> " + entry.getValue() + "\n");
+            }
+            logFile.append("\n");
+
+            logFile.append("File Table\n");
+            for (Map.Entry<Integer, FileData<String, BufferedReader>> entry : programState.getFileTable().getAll()) {
+                logFile.append("  " + entry.getKey() + " --> " + entry.getValue() + "\n");
             }
             logFile.append("\n");
 
             logFile.append("Output\n");
             for (String output : programState.getOutput().getAll()) {
-                logFile.append(output + "\n");
+                logFile.append("  " + output + "\n");
             }
-            logFile.append("\n");
+            logFile.append("-------------------\n");
         } catch (IOException error) {
-            throw new RuntimeException("error: could not write to the given file");
+            throw new InterpreterException("error: could not write to the given file");
         }
     }
 }

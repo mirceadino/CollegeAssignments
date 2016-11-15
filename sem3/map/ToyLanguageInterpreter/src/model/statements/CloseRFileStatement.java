@@ -4,6 +4,7 @@ import model.ProgramState;
 import model.expressions.Expression;
 import utils.FileData;
 import utils.FileTable;
+import utils.exceptions.InterpreterException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class CloseRFileStatement implements Statement {
     }
 
     @Override
-    public ProgramState execute(ProgramState programState) {
+    public ProgramState execute(ProgramState programState) throws InterpreterException {
         try {
             int descriptor = fileDescriptor.evaluate(programState.getSymbolTable());
             FileTable<Integer, FileData<String, BufferedReader>> fileTable = programState.getFileTable();
@@ -31,7 +32,7 @@ public class CloseRFileStatement implements Statement {
             return programState;
 
         } catch (IOException e) {
-            throw new RuntimeException("error: file could not be closed");
+            throw new InterpreterException("error: file could not be closed");
         }
     }
 

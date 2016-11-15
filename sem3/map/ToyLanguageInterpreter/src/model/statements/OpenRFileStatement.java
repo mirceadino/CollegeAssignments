@@ -5,9 +5,9 @@ import utils.FileDescriptorGenerator;
 import utils.FileTable;
 import utils.FileData;
 import utils.SymbolTable;
+import utils.exceptions.InterpreterException;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
@@ -25,9 +25,9 @@ public class OpenRFileStatement implements Statement {
     }
 
     @Override
-    public ProgramState execute(ProgramState programState) {
+    public ProgramState execute(ProgramState programState) throws InterpreterException {
         try {
-            checkIfFileNameWasNotUsedOrDie(programState);
+            checkIfFileNameWasNotUsedOrThrowException(programState);
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
             FileDescriptorGenerator generator = programState.getFileDescriptorGenerator();
@@ -42,7 +42,7 @@ public class OpenRFileStatement implements Statement {
             return programState;
 
         } catch (IOException e) {
-            throw new RuntimeException("error: file could not be open");
+            throw new InterpreterException("error: file could not be open");
         }
     }
 
@@ -51,12 +51,12 @@ public class OpenRFileStatement implements Statement {
         return "openRFile(" + variable + ", \"" + filename + "\")";
     }
 
-    private void checkIfFileNameWasNotUsedOrDie(ProgramState programState) {
+    private void checkIfFileNameWasNotUsedOrThrowException(ProgramState programState) throws InterpreterException {
         FileTable<Integer, FileData<String, BufferedReader>> fileTable = programState.getFileTable();
 
         for (Map.Entry<Integer, FileData<String, BufferedReader>> entry : fileTable.getAll()) {
             if (entry.getValue().getKey() == filename) {
-                throw new RuntimeException("error: a file with that name was already open");
+                throw new InterpreterException("error: a file with that name was already open");
             }
         }
     }

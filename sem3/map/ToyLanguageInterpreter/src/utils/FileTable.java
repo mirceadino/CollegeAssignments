@@ -1,5 +1,7 @@
 package utils;
 
+import utils.exceptions.InterpreterException;
+
 import java.util.Map;
 
 /**
@@ -12,7 +14,7 @@ public interface FileTable<K, V> {
 
     boolean contains(K key);
 
-    V getValue(K key);
+    V getValue(K key) throws InterpreterException;
 
     String toString();
 

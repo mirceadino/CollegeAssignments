@@ -4,6 +4,7 @@ import model.ProgramState;
 import model.statements.Statement;
 import repository.Repository;
 import utils.*;
+import utils.exceptions.InterpreterException;
 
 import java.io.BufferedReader;
 
@@ -14,6 +15,10 @@ public class Controller {
     private Repository repository;
 
     public Controller(Repository repository) {
+        this.repository = repository;
+    }
+
+    public void setRepository(Repository repository) {
         this.repository = repository;
     }
 
@@ -30,20 +35,20 @@ public class Controller {
         repository.add(program);
     }
 
-    public ProgramState getCurrentProgram() {
+    public ProgramState getCurrentProgram() throws InterpreterException {
         return repository.getCurrentProgramState();
     }
 
-    public ProgramState executeOneStep(ProgramState program) {
-        if (program == null) throw new RuntimeException("error: no program to execute");
+    public ProgramState executeOneStep(ProgramState program) throws InterpreterException {
+        if (program == null) throw new InterpreterException("error: no program to execute");
 
         ExecutionStack<Statement> executionStack = program.getExecutionStack();
         Statement statement = executionStack.pop();
-        if (statement == null) throw new RuntimeException("\nerror: execution stack is empty");
+        if (statement == null) throw new InterpreterException("\nerror: execution stack is empty");
         return statement.execute(program);
     }
 
-    public void executeAllSteps() {
+    public void executeAllSteps() throws InterpreterException {
         ProgramState currentProgram = repository.getCurrentProgramState();
         while (!currentProgram.getExecutionStack().isEmpty()) {
             executeOneStep(currentProgram);
@@ -51,7 +56,7 @@ public class Controller {
         }
     }
 
-    public String currentProgramToString() {
+    public String currentProgramToString() throws InterpreterException {
         ProgramState currentProgram = repository.getCurrentProgramState();
         return currentProgram.toString();
     }

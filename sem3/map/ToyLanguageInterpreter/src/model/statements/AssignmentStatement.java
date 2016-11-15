@@ -3,6 +3,7 @@ package model.statements;
 import model.ProgramState;
 import model.expressions.Expression;
 import utils.SymbolTable;
+import utils.exceptions.InterpreterException;
 
 /**
  * Created by mirko on 12/10/2016.
@@ -17,7 +18,7 @@ public class AssignmentStatement implements Statement {
     }
 
     @Override
-    public ProgramState execute(ProgramState programState) {
+    public ProgramState execute(ProgramState programState) throws InterpreterException {
         SymbolTable<String, Integer> symbolTable = programState.getSymbolTable();
         symbolTable.add(variable, value.evaluate(symbolTable));
         return programState;
