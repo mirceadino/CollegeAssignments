@@ -1,0 +1,3 @@
+Bug at edit button|closed|Mircea Mircescu|Stefan Stefanescu|
+Bug at remove button|closed|Mircea Mircescu|Stefan Stefanescu|
+Recompute sum of prices|closed|Maria Marianescu|Stefan Stefanescu|

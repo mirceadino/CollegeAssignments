@@ -1,0 +1,8 @@
+A very easy task|closed|38
+Some OOP project|closed|13
+Some DSA project|in progress|13
+A very difficult task|in progress|43
+Cleaning|closed|38
+Cooking|in progress|38
+Add button|open|0
+Fix bug #2484|in progress|38

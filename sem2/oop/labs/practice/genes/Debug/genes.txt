@@ -1,0 +1,5 @@
+Human | NPTN | TTAGAGCAGGC
+Human | IL10 | TTAATGGG
+Mouse | Col2a1 | ACCAAATAG
+Human | dsds  | ACCCCCCCCC
+E_Coli34434 | dejidioe | TTAATTCC

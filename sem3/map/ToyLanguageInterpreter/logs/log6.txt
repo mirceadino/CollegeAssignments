@@ -1,0 +1,154 @@
+Execution Stack
+  openRFile(var_f, "test.in")
+  readFile(var_f, var_c); print(var_c); if(var_c) then(readFile(var_f, var_c); print(var_c)) else(print(0)); closeRFile(var_f)
+
+Symbol Table
+
+File Table
+
+Output
+-------------------
+Execution Stack
+  readFile(var_f, var_c); print(var_c); if(var_c) then(readFile(var_f, var_c); print(var_c)) else(print(0)); closeRFile(var_f)
+
+Symbol Table
+  var_f --> 1
+
+File Table
+  1 --> test.in=java.io.BufferedReader@355da254
+
+Output
+-------------------
+Execution Stack
+  readFile(var_f, var_c)
+  print(var_c); if(var_c) then(readFile(var_f, var_c); print(var_c)) else(print(0)); closeRFile(var_f)
+
+Symbol Table
+  var_f --> 1
+
+File Table
+  1 --> test.in=java.io.BufferedReader@355da254
+
+Output
+-------------------
+Execution Stack
+  print(var_c); if(var_c) then(readFile(var_f, var_c); print(var_c)) else(print(0)); closeRFile(var_f)
+
+Symbol Table
+  var_f --> 1
+  var_c --> 15
+
+File Table
+  1 --> test.in=java.io.BufferedReader@355da254
+
+Output
+-------------------
+Execution Stack
+  print(var_c)
+  if(var_c) then(readFile(var_f, var_c); print(var_c)) else(print(0)); closeRFile(var_f)
+
+Symbol Table
+  var_f --> 1
+  var_c --> 15
+
+File Table
+  1 --> test.in=java.io.BufferedReader@355da254
+
+Output
+-------------------
+Execution Stack
+  if(var_c) then(readFile(var_f, var_c); print(var_c)) else(print(0)); closeRFile(var_f)
+
+Symbol Table
+  var_f --> 1
+  var_c --> 15
+
+File Table
+  1 --> test.in=java.io.BufferedReader@355da254
+
+Output
+  15
+-------------------
+Execution Stack
+  if(var_c) then(readFile(var_f, var_c); print(var_c)) else(print(0))
+  closeRFile(var_f)
+
+Symbol Table
+  var_f --> 1
+  var_c --> 15
+
+File Table
+  1 --> test.in=java.io.BufferedReader@355da254
+
+Output
+  15
+-------------------
+Execution Stack
+  readFile(var_f, var_c); print(var_c)
+  closeRFile(var_f)
+
+Symbol Table
+  var_f --> 1
+  var_c --> 15
+
+File Table
+  1 --> test.in=java.io.BufferedReader@355da254
+
+Output
+  15
+-------------------
+Execution Stack
+  readFile(var_f, var_c)
+  print(var_c)
+  closeRFile(var_f)
+
+Symbol Table
+  var_f --> 1
+  var_c --> 15
+
+File Table
+  1 --> test.in=java.io.BufferedReader@355da254
+
+Output
+  15
+-------------------
+Execution Stack
+  print(var_c)
+  closeRFile(var_f)
+
+Symbol Table
+  var_f --> 1
+  var_c --> 50
+
+File Table
+  1 --> test.in=java.io.BufferedReader@355da254
+
+Output
+  15
+-------------------
+Execution Stack
+  closeRFile(var_f)
+
+Symbol Table
+  var_f --> 1
+  var_c --> 50
+
+File Table
+  1 --> test.in=java.io.BufferedReader@355da254
+
+Output
+  15
+  50
+-------------------
+Execution Stack
+
+Symbol Table
+  var_f --> 1
+  var_c --> 50
+
+File Table
+
+Output
+  15
+  50
+-------------------
