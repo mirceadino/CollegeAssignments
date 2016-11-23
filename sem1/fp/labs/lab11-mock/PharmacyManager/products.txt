@@ -1,9 +1,0 @@
-1;Aspirin;10
-2;Penicilin;15
-3;VitaminC;10
-4;Nurofen;13
-5;VitaminC++;20
-6;VitaminD;18
-9;Coldrex;53
-10;Syrup;33
-110;SyrupMagic;34
