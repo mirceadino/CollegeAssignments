@@ -18,7 +18,7 @@ findpos([H|T], I, E, [I|RT]) :-
   H = E,
   IR is I + 1,
   findpos(T, IR, E, RT).
-findpos([H|T], I, E, R) :- 
+findpos([H|T], I, E, R) :-
   H \= E,
   IR is I + 1,
   findpos(T, IR, E, R).
@@ -26,7 +26,7 @@ findpos([H|T], I, E, R) :-
 % maxpos(L: list, R: list): R is a list containing the 1-indexed positions
 % where the maximum in L occurs.
 % maxpos(i, o).
-maxpos(L, R) :- 
+maxpos(L, R) :-
   maxel(L, M),
   findpos(L, 1, M, R).
 

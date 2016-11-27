@@ -17,7 +17,7 @@ typedef struct Nod {
 } Nod;
 
 typedef struct {
-//prim este adresa primului Nod din lista
+  //prim este adresa primului Nod din lista
   PNod _prim;
 } Lista;
 
