@@ -45,17 +45,23 @@ public class SingleProgramStateRepository implements Repository {
             }
             logFile.append("\n");
 
+            logFile.append("Output\n");
+            for (String output : programState.getOutput().getAll()) {
+                logFile.append("  " + output + "\n");
+            }
+            logFile.append("-------------------\n");
+
             logFile.append("File Table\n");
             for (Map.Entry<Integer, FileData<String, BufferedReader>> entry : programState.getFileTable().getAll()) {
                 logFile.append("  " + entry.getKey() + " --> " + entry.getValue() + "\n");
             }
             logFile.append("\n");
 
-            logFile.append("Output\n");
-            for (String output : programState.getOutput().getAll()) {
-                logFile.append("  " + output + "\n");
+            logFile.append("Heap\n");
+            for (Map.Entry<Integer, Integer> entry : programState.getHeap().getAll()) {
+                logFile.append("  " + entry.getKey() + " --> " + entry.getValue() + "\n");
             }
-            logFile.append("-------------------\n");
+            logFile.append("\n");
         } catch (IOException error) {
             throw new InterpreterException("error: could not write to the given file");
         }

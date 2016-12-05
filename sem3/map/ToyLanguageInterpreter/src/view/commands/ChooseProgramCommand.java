@@ -334,6 +334,23 @@ public class ChooseProgramCommand extends Command {
                 );
             }
 
+            case 8: {
+              /* v = 10;
+               * NEW(v, 20);
+               * NEW(a, 20);
+               * PRINT(v); */
+                return new CompoundStatement(
+                        new AssignmentStatement("v", new ConstExpr(10)),
+                        new CompoundStatement(
+                                new NewStatement("v", new ConstExpr(20)),
+                                new CompoundStatement(
+                                        new NewStatement("a", new ConstExpr(20)),
+                                        new PrintStatement(new VarExpr("v"))
+                                )
+                        )
+                );
+            }
+
             default: {
                 return null;
             }

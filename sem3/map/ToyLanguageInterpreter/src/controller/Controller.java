@@ -25,13 +25,14 @@ public class Controller {
     public void addProgram(Statement statement) {
         ExecutionStack<Statement> executionStack = new ExecutionStackImpl<>();
         SymbolTable<String, Integer> symbolTable = new SymbolTableImpl<>();
+        Output<String> output = new OutputImpl<String>();
         FileTable<Integer, FileData<String, BufferedReader>> fileTable = new FileTableImpl<>();
         FileDescriptorGenerator generator = new FileDescriptorGeneratorImpl();
-        Output<String> output = new OutputImpl<String>();
+        Heap<Integer> heap = new HeapImpl<>();
 
         executionStack.push(statement);
 
-        ProgramState program = new ProgramState(executionStack, symbolTable, fileTable, generator, output);
+        ProgramState program = new ProgramState(executionStack, symbolTable, output, fileTable, generator, heap);
         repository.add(program);
     }
 
