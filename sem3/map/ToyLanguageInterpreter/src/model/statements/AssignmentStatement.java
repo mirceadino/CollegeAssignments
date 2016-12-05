@@ -2,6 +2,7 @@ package model.statements;
 
 import model.ProgramState;
 import model.expressions.Expression;
+import utils.Heap;
 import utils.SymbolTable;
 import utils.exceptions.InterpreterException;
 
@@ -20,7 +21,8 @@ public class AssignmentStatement implements Statement {
     @Override
     public ProgramState execute(ProgramState programState) throws InterpreterException {
         SymbolTable<String, Integer> symbolTable = programState.getSymbolTable();
-        symbolTable.add(variable, value.evaluate(symbolTable));
+        Heap<Integer> heap = programState.getHeap();
+        symbolTable.add(variable, value.evaluate(symbolTable, heap));
         return programState;
     }
 

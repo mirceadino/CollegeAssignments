@@ -1,5 +1,6 @@
 package model.expressions;
 
+import utils.Heap;
 import utils.SymbolTable;
 import utils.exceptions.InterpreterException;
 
@@ -18,9 +19,9 @@ public class ArithExpr implements Expression {
     }
 
     @Override
-    public int evaluate(SymbolTable<String, Integer> symTable) throws InterpreterException {
-        int firstResult = first.evaluate(symTable);
-        int secondResult = second.evaluate(symTable);
+    public int evaluate(SymbolTable<String, Integer> symTable, Heap<Integer> heap) throws InterpreterException {
+        int firstResult = first.evaluate(symTable, heap);
+        int secondResult = second.evaluate(symTable, heap);
 
         switch (operator) {
             case '+':

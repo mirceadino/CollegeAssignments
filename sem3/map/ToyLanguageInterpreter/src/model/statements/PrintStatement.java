@@ -2,6 +2,7 @@ package model.statements;
 
 import model.ProgramState;
 import model.expressions.Expression;
+import utils.Heap;
 import utils.Output;
 import utils.SymbolTable;
 import utils.exceptions.InterpreterException;
@@ -19,8 +20,9 @@ public class PrintStatement implements Statement {
     @Override
     public ProgramState execute(ProgramState programState) throws InterpreterException {
         SymbolTable<String, Integer> symbolTable = programState.getSymbolTable();
+        Heap<Integer> heap = programState.getHeap();
         Output<String> output = programState.getOutput();
-        output.add("" + expression.evaluate(symbolTable));
+        output.add("" + expression.evaluate(symbolTable, heap));
         return programState;
     }
 

@@ -1,5 +1,6 @@
 package model.expressions;
 
+import utils.Heap;
 import utils.SymbolTable;
 
 /**
@@ -13,7 +14,7 @@ public class ConstExpr implements Expression {
     }
 
     @Override
-    public int evaluate(SymbolTable<String, Integer> symTable) {
+    public int evaluate(SymbolTable<String, Integer> symTable, Heap<Integer> heap) {
         return value;
     }
 

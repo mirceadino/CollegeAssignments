@@ -1,5 +1,6 @@
 package model.expressions;
 
+import utils.Heap;
 import utils.SymbolTable;
 import utils.exceptions.InterpreterException;
 
@@ -14,7 +15,7 @@ public class VarExpr implements Expression {
     }
 
     @Override
-    public int evaluate(SymbolTable<String, Integer> symTable) throws InterpreterException {
+    public int evaluate(SymbolTable<String, Integer> symTable, Heap<Integer> heap) throws InterpreterException {
         return symTable.getValue(name);
     }
 

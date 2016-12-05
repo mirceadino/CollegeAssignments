@@ -3,6 +3,7 @@ package view.commands;
 import controller.Controller;
 import model.expressions.ArithExpr;
 import model.expressions.ConstExpr;
+import model.expressions.ReadHeapExpression;
 import model.expressions.VarExpr;
 import model.statements.*;
 import utils.exceptions.InterpreterException;
@@ -337,15 +338,31 @@ public class ChooseProgramCommand extends Command {
             case 8: {
               /* v = 10;
                * NEW(v, 20);
-               * NEW(a, 20);
-               * PRINT(v); */
+               * NEW(a, 22);
+               * PRINT(v);
+               * PRINT(100 + READHEAP(v));
+               * PRINT(100 + READHEAP(a)); */
                 return new CompoundStatement(
                         new AssignmentStatement("v", new ConstExpr(10)),
                         new CompoundStatement(
                                 new NewStatement("v", new ConstExpr(20)),
                                 new CompoundStatement(
-                                        new NewStatement("a", new ConstExpr(20)),
-                                        new PrintStatement(new VarExpr("v"))
+                                        new NewStatement("a", new ConstExpr(22)),
+                                        new CompoundStatement(
+                                                new PrintStatement(new VarExpr("v")),
+                                                new CompoundStatement(
+                                                        new PrintStatement(
+                                                                new ArithExpr(
+                                                                        new ConstExpr(100),
+                                                                        new ReadHeapExpression("v"),
+                                                                        '+')),
+                                                        new PrintStatement(
+                                                                new ArithExpr(
+                                                                        new ConstExpr(100),
+                                                                        new ReadHeapExpression("a"),
+                                                                        '+'))
+                                                )
+                                        )
                                 )
                         )
                 );

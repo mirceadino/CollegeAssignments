@@ -3,6 +3,7 @@ package model.statements;
 import model.ProgramState;
 import model.expressions.Expression;
 import utils.ExecutionStack;
+import utils.Heap;
 import utils.SymbolTable;
 import utils.exceptions.InterpreterException;
 
@@ -22,10 +23,11 @@ public class IfStatement implements Statement {
 
     @Override
     public ProgramState execute(ProgramState programState) throws InterpreterException {
-        ExecutionStack<Statement>executionStack = programState.getExecutionStack();
+        ExecutionStack<Statement> executionStack = programState.getExecutionStack();
         SymbolTable<String, Integer> symbolTable = programState.getSymbolTable();
+        Heap<Integer> heap = programState.getHeap();
 
-        if (expression.evaluate(symbolTable) != 0) {
+        if (expression.evaluate(symbolTable, heap) != 0) {
             executionStack.push(ifBranch);
         } else if (elseBranch != null) {
             executionStack.push(elseBranch);

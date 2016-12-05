@@ -22,7 +22,7 @@ public class NewStatement implements Statement {
     public ProgramState execute(ProgramState programState) throws InterpreterException {
         Heap<Integer> heap = programState.getHeap();
         SymbolTable<String, Integer> symbolTable = programState.getSymbolTable();
-        symbolTable.add(variable, heap.add(value.evaluate(symbolTable)));
+        symbolTable.add(variable, heap.add(value.evaluate(symbolTable, heap)));
         return programState;
     }
 

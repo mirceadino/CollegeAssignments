@@ -25,7 +25,7 @@ public class ReadFileStatement implements Statement {
     @Override
     public ProgramState execute(ProgramState programState) throws InterpreterException {
         try {
-            int descriptor = fileDescriptor.evaluate(programState.getSymbolTable());
+            int descriptor = fileDescriptor.evaluate(programState.getSymbolTable(), programState.getHeap());
             FileTable<Integer, FileData<String, BufferedReader>> fileTable = programState.getFileTable();
             BufferedReader bufferedReader = fileTable.getValue(descriptor).getValue();
 
