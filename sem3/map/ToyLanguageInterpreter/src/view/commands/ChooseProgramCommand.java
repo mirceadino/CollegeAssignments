@@ -400,6 +400,30 @@ public class ChooseProgramCommand extends Command {
                                         "<")));
             }
 
+            case 10: {
+               /* v = 6;
+                * WHILE(v > 4) DO(
+                *   PRINT(v);
+                *   v = v - 1;
+                * )
+                * PRINT(v) */
+                return new CompoundStatement(
+                        new AssignmentStatement("v", new ConstExpr(6)),
+                        new CompoundStatement(
+                                new WhileStatement(
+                                        new BooleanExpr(new VarExpr("v"), new ConstExpr(4), ">"),
+                                        new CompoundStatement(
+                                                new PrintStatement(new VarExpr("v")),
+                                                new AssignmentStatement(
+                                                        "v",
+                                                        new ArithExpr(new VarExpr("v"), new ConstExpr(1), '-'))
+                                        )
+                                ),
+                                new PrintStatement(new VarExpr("v"))
+                        )
+                );
+            }
+
             default: {
                 return null;
             }
