@@ -7,6 +7,11 @@ import utils.*;
 import utils.exceptions.InterpreterException;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by mirko on 12/10/2016.
@@ -55,6 +60,10 @@ public class Controller {
         ProgramState currentProgram = repository.getCurrentProgramState();
         while (!currentProgram.getExecutionStack().isEmpty()) {
             executeOneStep(currentProgram);
+            currentProgram.getHeap().setContent(
+                    conservativeGarbageCollector(
+                            currentProgram.getSymbolTable(),
+                            currentProgram.getHeap()));
             repository.logCurrentProgramState();
         }
     }
@@ -62,5 +71,22 @@ public class Controller {
     public String currentProgramToString() throws InterpreterException {
         ProgramState currentProgram = repository.getCurrentProgramState();
         return currentProgram.toString();
+    }
+
+    Map<Integer, Integer> conservativeGarbageCollector(SymbolTable<String, Integer> symbolTable,
+                                                       Heap<Integer, Integer> heap) {
+        Collection<Integer> symbolTableValues = new ArrayList<Integer>();
+        for (Integer value : symbolTable.getValues()) {
+            symbolTableValues.add(value);
+        }
+
+        Map<Integer, Integer> heapEntries = new HashMap<Integer, Integer>();
+        for (Map.Entry<Integer, Integer> entry : heap.getAll()) {
+            heapEntries.put(entry.getKey(), entry.getValue());
+        }
+
+        return heapEntries.entrySet().stream()
+                .filter(e -> symbolTableValues.contains(e.getKey()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 }

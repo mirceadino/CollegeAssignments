@@ -343,7 +343,8 @@ public class ChooseProgramCommand extends Command {
                * PRINT(100 + READHEAP(v));
                * PRINT(100 + READHEAP(a));
                * WRITEHEAP(a, 30)
-               * PRINT(READHEAP(a)) */
+               * PRINT(READHEAP(a))
+               * a = 0 */
                 return new CompoundStatement(
                         new AssignmentStatement("v", new ConstExpr(10)),
                         new CompoundStatement(
@@ -366,7 +367,11 @@ public class ChooseProgramCommand extends Command {
                                                                                 '+')),
                                                                 new CompoundStatement(
                                                                         new WriteHeapStatement("a", new ConstExpr(30)),
-                                                                        new PrintStatement(new ReadHeapExpression("a")))
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new ReadHeapExpression("a")),
+                                                                                new AssignmentStatement("a", new ConstExpr(0))
+                                                                        )
+                                                                )
                                                         )
                                                 )
                                         )

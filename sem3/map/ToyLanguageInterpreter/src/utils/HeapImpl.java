@@ -55,4 +55,12 @@ public class HeapImpl<K, V> implements Heap<K, V> {
     public Iterable<Map.Entry<K, V>> getAll() {
         return heap.entrySet();
     }
+
+    @Override
+    public void setContent(Map<K, V> content) {
+        heap = new HashMap<K, V>();
+        for (Map.Entry<K, V> entry : content.entrySet()) {
+            heap.put(entry.getKey(), entry.getValue());
+        }
+    }
 }

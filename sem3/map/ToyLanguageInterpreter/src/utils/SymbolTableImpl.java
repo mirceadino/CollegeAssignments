@@ -50,4 +50,9 @@ public class SymbolTableImpl<K, V> implements SymbolTable<K, V> {
     public Iterable<Map.Entry<K, V>> getAll() {
         return symbolTable.entrySet();
     }
+
+    @Override
+    public Iterable<V> getValues() {
+        return symbolTable.values();
+    }
 }

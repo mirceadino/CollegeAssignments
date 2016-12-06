@@ -19,4 +19,6 @@ public interface Heap<K, V> {
     String toString();
 
     Iterable<Map.Entry<K, V>> getAll();
+
+    void setContent(Map<K, V> content);
 }

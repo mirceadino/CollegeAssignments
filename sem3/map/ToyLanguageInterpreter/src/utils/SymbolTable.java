@@ -17,4 +17,6 @@ public interface SymbolTable<K, V> {
     String toString();
 
     Iterable<Map.Entry<K, V>> getAll();
+
+    Iterable<V> getValues();
 }
