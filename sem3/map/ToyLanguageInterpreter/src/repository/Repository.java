@@ -13,6 +13,8 @@ public interface Repository extends Serializable {
 
     ProgramState getCurrentProgramState() throws InterpreterException;
 
+    String getLogFilePath();
+
     void logCurrentProgramState() throws InterpreterException;
 
     void serialize(String serializeFilePath) throws InterpreterException;

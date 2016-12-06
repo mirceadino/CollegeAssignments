@@ -6,7 +6,7 @@ import repository.Repository;
 import utils.*;
 import utils.exceptions.InterpreterException;
 
-import java.io.BufferedReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -62,6 +62,9 @@ public class Controller {
 
     public void executeAllSteps() throws InterpreterException {
         ProgramState currentProgram = repository.getCurrentProgramState();
+
+        clearFile(repository.getLogFilePath());
+
         while (!currentProgram.getExecutionStack().isEmpty()) {
             executeOneStep(currentProgram);
             currentProgram.getHeap().setContent(
@@ -92,5 +95,12 @@ public class Controller {
         return heapEntries.entrySet().stream()
                 .filter(e -> symbolTableValues.contains(e.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    private void clearFile(String file) throws InterpreterException {
+        try (PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(file, false)))) {
+        } catch (IOException error) {
+            throw new InterpreterException("error: file could not be cleared");
+        }
     }
 }

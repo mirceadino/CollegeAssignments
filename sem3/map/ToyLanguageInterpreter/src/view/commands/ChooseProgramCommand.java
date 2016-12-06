@@ -6,6 +6,10 @@ import model.statements.*;
 import utils.exceptions.InterpreterException;
 import view.TextMenu;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -30,11 +34,11 @@ public class ChooseProgramCommand extends Command {
                 break;
             }
 
+            String logFile = "./logs/log" + index + ".txt";
+
             menu.addCommand(new ChooseExampleCommand(
                     "" + index, "Choose example " + index + "\n       " + program,
-                    controller,
-                    program,
-                    "./logs/log" + index + ".txt")
+                    controller, program, logFile)
             );
             ++index;
         }

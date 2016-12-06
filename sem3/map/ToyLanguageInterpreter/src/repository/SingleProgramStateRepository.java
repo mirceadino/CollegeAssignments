@@ -31,6 +31,11 @@ public class SingleProgramStateRepository implements Repository {
     }
 
     @Override
+    public String getLogFilePath() {
+        return logFilePath;
+    }
+
+    @Override
     public void logCurrentProgramState() throws InterpreterException {
         try (PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)))) {
             logFile.append("Execution Stack\n");
