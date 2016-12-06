@@ -1,10 +1,7 @@
 package view.commands;
 
 import controller.Controller;
-import model.expressions.ArithExpr;
-import model.expressions.ConstExpr;
-import model.expressions.ReadHeapExpression;
-import model.expressions.VarExpr;
+import model.expressions.*;
 import model.statements.*;
 import utils.exceptions.InterpreterException;
 import view.TextMenu;
@@ -378,6 +375,29 @@ public class ChooseProgramCommand extends Command {
                                 )
                         )
                 );
+            }
+
+            case 9: {
+                /* PRINT(10 + (2 < 6))
+                 * PRINT((10 + 2) < 6) */
+                return new CompoundStatement(
+                        new PrintStatement(
+                                new ArithExpr(
+                                        new ConstExpr(10),
+                                        new BooleanExpr(
+                                                new ConstExpr(2),
+                                                new ConstExpr(6),
+                                                "<"),
+                                        '+')),
+                        new PrintStatement(
+                                new BooleanExpr(
+                                        new ArithExpr(
+                                                new ConstExpr(10),
+                                                new ConstExpr(2),
+                                                '+'
+                                        ),
+                                        new ConstExpr(6),
+                                        "<")));
             }
 
             default: {
