@@ -7,16 +7,16 @@ import java.util.Map;
 /**
  * Created by mirko on 06/12/2016.
  */
-public interface Heap<V> {
-    int add(V value);
+public interface Heap<K, V> {
+    void add(K key, V value);
 
-    V remove(int key);
+    V remove(K key);
 
-    boolean contains(int key);
+    boolean contains(K key);
 
-    V getValue(int key) throws InterpreterException;
+    V getValue(K key) throws InterpreterException;
 
     String toString();
 
-    Iterable<Map.Entry<Integer, V>> getAll();
+    Iterable<Map.Entry<K, V>> getAll();
 }

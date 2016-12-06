@@ -1,7 +1,7 @@
 package model.statements;
 
 import model.ProgramState;
-import utils.FileDescriptorGenerator;
+import utils.NumberGenerator;
 import utils.FileTable;
 import utils.FileData;
 import utils.SymbolTable;
@@ -30,7 +30,7 @@ public class OpenRFileStatement implements Statement {
             checkIfFileNameWasNotUsedOrThrowException(programState);
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
-            FileDescriptorGenerator generator = programState.getFileDescriptorGenerator();
+            NumberGenerator generator = programState.getFileDescriptorGenerator();
             int descriptor = generator.next();
 
             SymbolTable<String, Integer> symbolTable = programState.getSymbolTable();

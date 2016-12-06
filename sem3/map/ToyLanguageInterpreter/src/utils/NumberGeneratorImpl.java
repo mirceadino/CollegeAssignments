@@ -3,8 +3,12 @@ package utils;
 /**
  * Created by mirko on 09/11/2016.
  */
-public class FileDescriptorGeneratorImpl implements FileDescriptorGenerator {
+public class NumberGeneratorImpl implements NumberGenerator {
     private int currentNumber;
+
+    public NumberGeneratorImpl(int number) {
+        this.currentNumber = number;
+    }
 
     @Override
     public int next() {

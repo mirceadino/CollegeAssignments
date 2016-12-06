@@ -20,9 +20,11 @@ public class NewStatement implements Statement {
 
     @Override
     public ProgramState execute(ProgramState programState) throws InterpreterException {
-        Heap<Integer> heap = programState.getHeap();
+        Heap<Integer, Integer> heap = programState.getHeap();
         SymbolTable<String, Integer> symbolTable = programState.getSymbolTable();
-        symbolTable.add(variable, heap.add(value.evaluate(symbolTable, heap)));
+        Integer address = new Integer(programState.getHeapGenerator().next());
+        heap.add(address, value.evaluate(symbolTable, heap));
+        symbolTable.add(variable, address);
         return programState;
     }
 

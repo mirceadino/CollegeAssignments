@@ -20,7 +20,7 @@ public class PrintStatement implements Statement {
     @Override
     public ProgramState execute(ProgramState programState) throws InterpreterException {
         SymbolTable<String, Integer> symbolTable = programState.getSymbolTable();
-        Heap<Integer> heap = programState.getHeap();
+        Heap<Integer, Integer> heap = programState.getHeap();
         Output<String> output = programState.getOutput();
         output.add("" + expression.evaluate(symbolTable, heap));
         return programState;

@@ -25,7 +25,7 @@ public class IfStatement implements Statement {
     public ProgramState execute(ProgramState programState) throws InterpreterException {
         ExecutionStack<Statement> executionStack = programState.getExecutionStack();
         SymbolTable<String, Integer> symbolTable = programState.getSymbolTable();
-        Heap<Integer> heap = programState.getHeap();
+        Heap<Integer, Integer> heap = programState.getHeap();
 
         if (expression.evaluate(symbolTable, heap) != 0) {
             executionStack.push(ifBranch);

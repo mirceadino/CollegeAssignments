@@ -341,7 +341,9 @@ public class ChooseProgramCommand extends Command {
                * NEW(a, 22);
                * PRINT(v);
                * PRINT(100 + READHEAP(v));
-               * PRINT(100 + READHEAP(a)); */
+               * PRINT(100 + READHEAP(a));
+               * WRITEHEAP(a, 30)
+               * PRINT(READHEAP(a)) */
                 return new CompoundStatement(
                         new AssignmentStatement("v", new ConstExpr(10)),
                         new CompoundStatement(
@@ -356,11 +358,16 @@ public class ChooseProgramCommand extends Command {
                                                                         new ConstExpr(100),
                                                                         new ReadHeapExpression("v"),
                                                                         '+')),
-                                                        new PrintStatement(
-                                                                new ArithExpr(
-                                                                        new ConstExpr(100),
-                                                                        new ReadHeapExpression("a"),
-                                                                        '+'))
+                                                        new CompoundStatement(
+                                                                new PrintStatement(
+                                                                        new ArithExpr(
+                                                                                new ConstExpr(100),
+                                                                                new ReadHeapExpression("a"),
+                                                                                '+')),
+                                                                new CompoundStatement(
+                                                                        new WriteHeapStatement("a", new ConstExpr(30)),
+                                                                        new PrintStatement(new ReadHeapExpression("a")))
+                                                        )
                                                 )
                                         )
                                 )

@@ -14,7 +14,7 @@ public class ConstExpr implements Expression {
     }
 
     @Override
-    public int evaluate(SymbolTable<String, Integer> symTable, Heap<Integer> heap) {
+    public int evaluate(SymbolTable<String, Integer> symTable, Heap<Integer, Integer> heap) {
         return value;
     }
 

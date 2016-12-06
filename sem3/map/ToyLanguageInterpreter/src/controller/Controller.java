@@ -27,12 +27,14 @@ public class Controller {
         SymbolTable<String, Integer> symbolTable = new SymbolTableImpl<>();
         Output<String> output = new OutputImpl<String>();
         FileTable<Integer, FileData<String, BufferedReader>> fileTable = new FileTableImpl<>();
-        FileDescriptorGenerator generator = new FileDescriptorGeneratorImpl();
-        Heap<Integer> heap = new HeapImpl<>();
+        NumberGenerator fileDescriptorGenerator = new NumberGeneratorImpl(0);
+        Heap<Integer, Integer> heap = new HeapImpl<>();
+        NumberGenerator heapAddressGenerator = new NumberGeneratorImpl(1);
 
         executionStack.push(statement);
 
-        ProgramState program = new ProgramState(executionStack, symbolTable, output, fileTable, generator, heap);
+        ProgramState program = new ProgramState(executionStack, symbolTable, output, fileTable, fileDescriptorGenerator,
+                heap, heapAddressGenerator);
         repository.add(program);
     }
 

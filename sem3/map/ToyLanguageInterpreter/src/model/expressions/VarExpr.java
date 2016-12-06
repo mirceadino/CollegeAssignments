@@ -15,7 +15,7 @@ public class VarExpr implements Expression {
     }
 
     @Override
-    public int evaluate(SymbolTable<String, Integer> symTable, Heap<Integer> heap) throws InterpreterException {
+    public int evaluate(SymbolTable<String, Integer> symTable, Heap<Integer, Integer> heap) throws InterpreterException {
         return symTable.getValue(name);
     }
 

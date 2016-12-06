@@ -8,34 +8,30 @@ import java.util.Map;
 /**
  * Created by mirko on 06/12/2016.
  */
-public class HeapImpl<V> implements Heap<V> {
-    private Map<Integer, V> heap;
-    private int nextFreeLocation;
+public class HeapImpl<K, V> implements Heap<K, V> {
+    private Map<K, V> heap;
 
     public HeapImpl() {
-        this.heap = new HashMap<Integer, V>();
-        nextFreeLocation = 1;
+        this.heap = new HashMap<K, V>();
     }
 
     @Override
-    public int add(V value) {
-        heap.put(nextFreeLocation, value);
-        ++nextFreeLocation;
-        return nextFreeLocation - 1;
+    public void add(K key, V value) {
+        heap.put(key, value);
     }
 
     @Override
-    public V remove(int key) {
+    public V remove(K key) {
         return heap.remove(key);
     }
 
     @Override
-    public boolean contains(int key) {
+    public boolean contains(K key) {
         return heap.containsKey(key);
     }
 
     @Override
-    public V getValue(int key) throws InterpreterException {
+    public V getValue(K key) throws InterpreterException {
         if (!contains(key)) throw new InterpreterException("error: key \"" + key + "\" doesn't exist in heap");
         return heap.get(key);
     }
@@ -47,7 +43,7 @@ public class HeapImpl<V> implements Heap<V> {
 
         if (!heap.isEmpty()) string.append("\n");
 
-        for (Integer key : heap.keySet()) {
+        for (K key : heap.keySet()) {
             string.append("   " + key + " <- " + heap.get(key) + "\n");
         }
 
@@ -56,7 +52,7 @@ public class HeapImpl<V> implements Heap<V> {
     }
 
     @Override
-    public Iterable<Map.Entry<Integer, V>> getAll() {
+    public Iterable<Map.Entry<K, V>> getAll() {
         return heap.entrySet();
     }
 }

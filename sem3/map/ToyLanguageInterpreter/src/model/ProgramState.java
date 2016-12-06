@@ -13,19 +13,22 @@ public class ProgramState {
     private SymbolTable<String, Integer> symbolTable;
     private Output<String> output;
     private FileTable<Integer, FileData<String, BufferedReader>> fileTable;
-    private FileDescriptorGenerator generator;
-    private Heap<Integer> heap;
+    private NumberGenerator fileDescriptorGenerator;
+    private Heap<Integer, Integer> heap;
+    private NumberGenerator heapAddressGenerator;
 
     public ProgramState(ExecutionStack<Statement> executionStack,
                         SymbolTable<String, Integer> symbolTable,
                         Output<String> output, FileTable<Integer, FileData<String, BufferedReader>> fileTable,
-                        FileDescriptorGenerator generator, Heap<Integer> heap) {
+                        NumberGenerator fileDescriptorGenerator, Heap<Integer, Integer> heap,
+                        NumberGenerator heapAddressGenerator) {
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
         this.output = output;
         this.fileTable = fileTable;
-        this.generator = generator;
+        this.fileDescriptorGenerator = fileDescriptorGenerator;
         this.heap = heap;
+        this.heapAddressGenerator = heapAddressGenerator;
     }
 
     public ExecutionStack<Statement> getExecutionStack() {
@@ -44,12 +47,16 @@ public class ProgramState {
         return fileTable;
     }
 
-    public FileDescriptorGenerator getFileDescriptorGenerator() {
-        return generator;
+    public NumberGenerator getFileDescriptorGenerator() {
+        return fileDescriptorGenerator;
     }
 
-    public Heap<Integer> getHeap() {
+    public Heap<Integer, Integer> getHeap() {
         return heap;
+    }
+
+    public NumberGenerator getHeapGenerator() {
+        return fileDescriptorGenerator;
     }
 
     @Override
