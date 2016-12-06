@@ -3,6 +3,8 @@ package view.commands;
 import utils.exceptions.ExitTextMenuException;
 import utils.exceptions.InterpreterException;
 
+import java.util.Scanner;
+
 /**
  * Created by mirko on 14/11/2016.
  */
@@ -12,7 +14,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute() throws InterpreterException {
+    public void execute(Scanner scanner) throws InterpreterException {
         throw new ExitTextMenuException("");
     }
 }

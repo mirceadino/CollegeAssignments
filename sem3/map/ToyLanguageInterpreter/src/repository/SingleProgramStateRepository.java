@@ -66,4 +66,25 @@ public class SingleProgramStateRepository implements Repository {
             throw new InterpreterException("error: could not write to the given file");
         }
     }
+
+    public void serialize(String serializeFilePath) throws InterpreterException {
+        try (ObjectOutputStream serializeFile = new ObjectOutputStream(new FileOutputStream(serializeFilePath))) {
+            serializeFile.writeObject(this);
+        } catch (IOException e) {
+            throw new InterpreterException("error: could not serialize to the given file");
+        }
+    }
+
+    public void deserialize(String serializeFilePath) throws InterpreterException {
+        try (ObjectInputStream serializeFile = new ObjectInputStream(new FileInputStream(serializeFilePath))) {
+            SingleProgramStateRepository deserializedRepository =
+                    (SingleProgramStateRepository) serializeFile.readObject();
+            this.programState = deserializedRepository.programState;
+            this.logFilePath = deserializedRepository.logFilePath;
+        } catch (IOException e) {
+            throw new InterpreterException("error: could not deserialize from the given file");
+        } catch (ClassNotFoundException e) {
+            throw new InterpreterException("error: could not deserialize from the given file due to class not found");
+        }
+    }
 }

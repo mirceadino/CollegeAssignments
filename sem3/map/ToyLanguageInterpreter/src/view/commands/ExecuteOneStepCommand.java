@@ -3,6 +3,8 @@ package view.commands;
 import controller.Controller;
 import utils.exceptions.InterpreterException;
 
+import java.util.Scanner;
+
 /**
  * Created by mirko on 14/11/2016.
  */
@@ -15,7 +17,7 @@ public class ExecuteOneStepCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(Scanner scanner) {
         try {
             controller.executeOneStep(controller.getCurrentProgram());
             System.out.println(controller.currentProgramToString());

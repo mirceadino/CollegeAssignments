@@ -27,6 +27,10 @@ public class Controller {
         this.repository = repository;
     }
 
+    public Repository getRepository() {
+        return this.repository;
+    }
+
     public void addProgram(Statement statement) {
         ExecutionStack<Statement> executionStack = new ExecutionStackImpl<>();
         SymbolTable<String, Integer> symbolTable = new SymbolTableImpl<>();

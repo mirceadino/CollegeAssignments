@@ -13,9 +13,11 @@ import java.util.Scanner;
  */
 public class TextMenu {
     private Map<String, Command> commands;
+    private Scanner scanner;
 
-    public TextMenu() {
-        commands = new HashMap<>();
+    public TextMenu(Scanner scanner) {
+        this.commands = new HashMap<>();
+        this.scanner = scanner;
     }
 
     public void addCommand(Command command) {
@@ -30,8 +32,6 @@ public class TextMenu {
     }
 
     public void show() {
-        Scanner scanner = new Scanner(System.in);
-
         while (true) {
             printMenu();
 
@@ -45,7 +45,7 @@ public class TextMenu {
             }
 
             try {
-                command.execute();
+                command.execute(scanner);
             } catch (ExitTextMenuException err) {
                 break;
             } catch (InterpreterException err) {

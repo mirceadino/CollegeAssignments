@@ -6,6 +6,8 @@ import model.statements.*;
 import utils.exceptions.InterpreterException;
 import view.TextMenu;
 
+import java.util.Scanner;
+
 /**
  * Created by mirko on 15/11/2016.
  */
@@ -18,8 +20,8 @@ public class ChooseProgramCommand extends Command {
     }
 
     @Override
-    public void execute() throws InterpreterException {
-        TextMenu menu = new TextMenu();
+    public void execute(Scanner scanner) throws InterpreterException {
+        TextMenu menu = new TextMenu(scanner);
 
         int index = 1;
         while (true) {

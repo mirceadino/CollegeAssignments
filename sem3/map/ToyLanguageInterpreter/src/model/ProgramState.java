@@ -4,11 +4,12 @@ import model.statements.Statement;
 import utils.*;
 
 import java.io.BufferedReader;
+import java.io.Serializable;
 
 /**
  * Created by mirko on 12/10/2016.
  */
-public class ProgramState {
+public class ProgramState implements Serializable {
     private ExecutionStack<Statement> executionStack;
     private SymbolTable<String, Integer> symbolTable;
     private Output<String> output;
