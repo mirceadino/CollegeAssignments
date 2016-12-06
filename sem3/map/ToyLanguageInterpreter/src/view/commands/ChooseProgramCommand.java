@@ -344,6 +344,7 @@ public class ChooseProgramCommand extends Command {
                * WRITEHEAP(a, 30)
                * PRINT(READHEAP(a))
                * a = 0 */
+
                 return new CompoundStatement(
                         new AssignmentStatement("v", new ConstExpr(10)),
                         new CompoundStatement(
@@ -382,6 +383,7 @@ public class ChooseProgramCommand extends Command {
             case 9: {
                 /* PRINT(10 + (2 < 6))
                  * PRINT((10 + 2) < 6) */
+
                 return new CompoundStatement(
                         new PrintStatement(
                                 new ArithExpr(
@@ -409,6 +411,7 @@ public class ChooseProgramCommand extends Command {
                 *   v = v - 1;
                 * )
                 * PRINT(v) */
+
                 return new CompoundStatement(
                         new AssignmentStatement("v", new ConstExpr(6)),
                         new CompoundStatement(
