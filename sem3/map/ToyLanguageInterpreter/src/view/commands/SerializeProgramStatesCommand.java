@@ -20,6 +20,6 @@ public class SerializeProgramStatesCommand extends Command {
     public void execute(Scanner scanner) throws InterpreterException {
         System.out.print("Type the path of the file: ");
         String serializeFilePath = scanner.nextLine();
-        controller.getRepository().serialize(serializeFilePath);
+        controller.serializeRepository(serializeFilePath);
     }
 }

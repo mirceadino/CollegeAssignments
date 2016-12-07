@@ -27,10 +27,6 @@ public class Controller {
         this.repository = repository;
     }
 
-    public Repository getRepository() {
-        return this.repository;
-    }
-
     public void addProgram(Statement statement) {
         ExecutionStack<Statement> executionStack = new ExecutionStackImpl<>();
         SymbolTable<String, Integer> symbolTable = new SymbolTableImpl<>();
@@ -80,8 +76,16 @@ public class Controller {
         return currentProgram.toString();
     }
 
-    Map<Integer, Integer> conservativeGarbageCollector(SymbolTable<String, Integer> symbolTable,
-                                                       Heap<Integer, Integer> heap) {
+    public void serializeRepository(String serializeFilePath) throws InterpreterException {
+        repository.serialize(serializeFilePath);
+    }
+
+    public void deserializeRepository(String serializeFilePath) throws InterpreterException {
+        repository.deserialize(serializeFilePath);
+    }
+
+    private Map<Integer, Integer> conservativeGarbageCollector(SymbolTable<String, Integer> symbolTable,
+                                                               Heap<Integer, Integer> heap) {
         Collection<Integer> symbolTableValues = new ArrayList<Integer>();
         for (Integer value : symbolTable.getValues()) {
             symbolTableValues.add(value);
