@@ -24,7 +24,7 @@ public class WriteHeapStatement implements Statement {
         Heap<Integer, Integer> heap = programState.getHeap();
         Integer address = symbolTable.getValue(variable);
         heap.add(address, value.evaluate(symbolTable, heap));
-        return programState;
+        return null;
     }
 
     @Override

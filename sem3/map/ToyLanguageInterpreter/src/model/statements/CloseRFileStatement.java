@@ -29,7 +29,7 @@ public class CloseRFileStatement implements Statement {
             bufferedReader.close();
             fileTable.remove(descriptor);
 
-            return programState;
+            return null;
 
         } catch (IOException e) {
             throw new InterpreterException("error: file could not be closed");

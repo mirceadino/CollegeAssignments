@@ -20,7 +20,7 @@ public class ExecuteAllStepsCommand extends Command {
     public void execute(Scanner scanner) {
         try {
             controller.executeAllSteps();
-            System.out.println(controller.currentProgramToString());
+            System.out.println(controller.currentProgramStatesToString());
             System.out.flush();
         } catch (InterpreterException error) {
             System.out.println(error.toString());

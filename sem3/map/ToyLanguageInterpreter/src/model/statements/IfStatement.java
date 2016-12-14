@@ -33,7 +33,7 @@ public class IfStatement implements Statement {
             executionStack.push(elseBranch);
         }
 
-        return programState;
+        return null;
     }
 
     @Override

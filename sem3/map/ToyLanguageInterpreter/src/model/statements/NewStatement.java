@@ -25,7 +25,7 @@ public class NewStatement implements Statement {
         Integer address = new Integer(programState.getHeapGenerator().next());
         heap.add(address, value.evaluate(symbolTable, heap));
         symbolTable.add(variable, address);
-        return programState;
+        return null;
     }
 
     @Override

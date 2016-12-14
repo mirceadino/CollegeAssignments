@@ -2,6 +2,7 @@ package view.commands;
 
 import controller.Controller;
 import model.statements.Statement;
+import repository.MultipleProgramStateRepository;
 import repository.Repository;
 import repository.SingleProgramStateRepository;
 import utils.exceptions.ExitTextMenuException;
@@ -27,7 +28,7 @@ public class ChooseExampleCommand extends Command {
 
     @Override
     public void execute(Scanner scanner) throws InterpreterException {
-        Repository repository = new SingleProgramStateRepository(logfile);
+        Repository repository = new MultipleProgramStateRepository(logfile);
         controller.setRepository(repository);
         controller.addProgram(statement);
         throw new ExitTextMenuException("Program was chosen.");

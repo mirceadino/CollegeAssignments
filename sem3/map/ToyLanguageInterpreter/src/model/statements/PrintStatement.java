@@ -23,7 +23,7 @@ public class PrintStatement implements Statement {
         Heap<Integer, Integer> heap = programState.getHeap();
         Output<String> output = programState.getOutput();
         output.add("" + expression.evaluate(symbolTable, heap));
-        return programState;
+        return null;
     }
 
     @Override

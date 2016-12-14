@@ -39,7 +39,7 @@ public class OpenRFileStatement implements Statement {
             FileTable<Integer, FileData<String, BufferedReader>> fileTable = programState.getFileTable();
             fileTable.add(descriptor, new FileData<>(filename, bufferedReader));
 
-            return programState;
+            return null;
 
         } catch (IOException e) {
             throw new InterpreterException("error: file could not be open");

@@ -30,7 +30,7 @@ public class WhileStatement implements Statement {
             executionStack.push(branch);
         }
 
-        return programState;
+        return null;
     }
 
     @Override

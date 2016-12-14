@@ -39,7 +39,6 @@ public class ReadFileStatement implements Statement {
             }
 
             Statement assignment = new AssignmentStatement(variable, value);
-
             return assignment.execute(programState);
 
         } catch (IOException e) {

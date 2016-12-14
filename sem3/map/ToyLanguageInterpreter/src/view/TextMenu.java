@@ -5,6 +5,7 @@ import utils.exceptions.InterpreterException;
 import view.commands.Command;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class TextMenu {
     private Scanner scanner;
 
     public TextMenu(Scanner scanner) {
-        this.commands = new HashMap<>();
+        this.commands = new LinkedHashMap<>();
         this.scanner = scanner;
     }
 

@@ -433,6 +433,39 @@ public class ChooseProgramCommand extends Command {
                 );
             }
 
+            case 11: {
+               /* v = 10;
+                * NEW(a, 22);
+                * FORK(WRITEHEAP(a, 30); v = 32; PRINT(v); PRINT(READHEAP(a));
+                * PRINT(v); PRINT(READHEAP(a)); */
+
+                return new CompoundStatement(
+                        new AssignmentStatement("v", new ConstExpr(10)),
+                        new CompoundStatement(
+                                new NewStatement("a", new ConstExpr(22)),
+                                new CompoundStatement(
+                                        new ForkStatement(
+                                                new CompoundStatement(
+                                                        new WriteHeapStatement("a", new ConstExpr(30)),
+                                                        new CompoundStatement(
+                                                                new AssignmentStatement("v", new ConstExpr(32)),
+                                                                new CompoundStatement(
+                                                                        new PrintStatement(new VarExpr("v")),
+                                                                        new PrintStatement(new ReadHeapExpression("a"))
+                                                                )
+                                                        )
+                                                )
+
+                                        ),
+                                        new CompoundStatement(
+                                                new PrintStatement(new VarExpr("v")),
+                                                new PrintStatement(new ReadHeapExpression("a"))
+                                        )
+                                )
+                        )
+                );
+            }
+
             default: {
                 return null;
             }

@@ -4,6 +4,7 @@ import model.ProgramState;
 import utils.exceptions.InterpreterException;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by mirko on 12/10/2016.
@@ -11,11 +12,13 @@ import java.io.Serializable;
 public interface Repository extends Serializable {
     void add(ProgramState programState);
 
-    ProgramState getCurrentProgramState() throws InterpreterException;
+    List<ProgramState> getProgramStateList();
+
+    void setProgramStateList(List<ProgramState> list) throws InterpreterException;
 
     String getLogFilePath();
 
-    void logCurrentProgramState() throws InterpreterException;
+    void logProgramState(ProgramState programState) throws InterpreterException;
 
     void serialize(String serializeFilePath) throws InterpreterException;
 

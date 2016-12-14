@@ -7,10 +7,11 @@ import utils.*;
 import utils.exceptions.InterpreterException;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 /**
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
  */
 public class Controller {
     private Repository repository;
+    private ExecutorService executor;
 
     public Controller(Repository repository) {
         this.repository = repository;
@@ -43,37 +45,69 @@ public class Controller {
         repository.add(program);
     }
 
-    public ProgramState getCurrentProgram() throws InterpreterException {
-        return repository.getCurrentProgramState();
-    }
+    public void executeOneStepForAllPrograms(List<ProgramState> list) throws InterpreterException {
+        List<Callable<ProgramState>> callableList = list.stream()
+                .map(p ->
+                        (Callable<ProgramState>) (() -> {
+                            return p.executeOneStep();
+                        })
+                )
+                .collect(Collectors.toList());
 
-    public ProgramState executeOneStep(ProgramState program) throws InterpreterException {
-        if (program == null) throw new InterpreterException("error: no program to execute");
+        List<ProgramState> newList;
+        try {
+            newList = executor.invokeAll(callableList).stream()
+                    .map(future -> {
+                        try {
+                            return future.get();
+                        } catch (InterruptedException e) {
+                            throw new InterpreterException("error: interrupted exception");
+                        } catch (ExecutionException e) {
+                            throw new InterpreterException("error: execution exception");
+                        }
+                    })
+                    .filter(p -> p != null)
+                    .collect(Collectors.toList());
+        } catch (InterruptedException e) {
+            throw new InterpreterException("error: interrupted exception");
+        }
 
-        ExecutionStack<Statement> executionStack = program.getExecutionStack();
-        Statement statement = executionStack.pop();
-        if (statement == null) throw new InterpreterException("\nerror: execution stack is empty");
-        return statement.execute(program);
+        for (ProgramState newProgramState : newList) {
+            list.add(newProgramState);
+        }
+
+        list.forEach(p -> {
+            repository.logProgramState(p);
+        });
+
+        repository.setProgramStateList(list);
     }
 
     public void executeAllSteps() throws InterpreterException {
-        ProgramState currentProgram = repository.getCurrentProgramState();
-
         clearFile(repository.getLogFilePath());
 
-        while (!currentProgram.getExecutionStack().isEmpty()) {
-            executeOneStep(currentProgram);
-            currentProgram.getHeap().setContent(
-                    conservativeGarbageCollector(
-                            currentProgram.getSymbolTable(),
-                            currentProgram.getHeap()));
-            repository.logCurrentProgramState();
+        executor = Executors.newFixedThreadPool(2);
+
+        repository.getProgramStateList().forEach(p -> {
+            repository.logProgramState(p);
+        });
+
+        while (true) {
+            List<ProgramState> list = removeCompletedPrograms(repository.getProgramStateList());
+            if (list.size() == 0) {
+                break;
+            }
+            executeOneStepForAllPrograms(list);
         }
+        executor.shutdownNow();
     }
 
-    public String currentProgramToString() throws InterpreterException {
-        ProgramState currentProgram = repository.getCurrentProgramState();
-        return currentProgram.toString();
+    public String currentProgramStatesToString() throws InterpreterException {
+        StringBuilder result = new StringBuilder();
+        for (ProgramState programState : repository.getProgramStateList()) {
+            result.append(programState + "\n");
+        }
+        return result.toString();
     }
 
     public void serializeRepository(String serializeFilePath) throws InterpreterException {
@@ -99,6 +133,12 @@ public class Controller {
         return heapEntries.entrySet().stream()
                 .filter(e -> symbolTableValues.contains(e.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    private List<ProgramState> removeCompletedPrograms(List<ProgramState> list) {
+        return list.stream()
+                .filter(p -> p.isNotCompleted())
+                .collect(Collectors.toList());
     }
 
     private void clearFile(String file) throws InterpreterException {

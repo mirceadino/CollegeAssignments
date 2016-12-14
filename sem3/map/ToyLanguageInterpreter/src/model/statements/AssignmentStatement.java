@@ -23,7 +23,7 @@ public class AssignmentStatement implements Statement {
         SymbolTable<String, Integer> symbolTable = programState.getSymbolTable();
         Heap<Integer, Integer> heap = programState.getHeap();
         symbolTable.add(variable, value.evaluate(symbolTable, heap));
-        return programState;
+        return null;
     }
 
     @Override

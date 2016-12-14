@@ -11,34 +11,30 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by mirko on 12/10/2016.
+ * Created by mirko on 14/12/2016.
  */
-public class SingleProgramStateRepository implements Repository {
-    private ProgramState programState;
+public class MultipleProgramStateRepository implements Repository {
+    private List<ProgramState> list;
     private String logFilePath;
 
-    public SingleProgramStateRepository(String logFilePath) {
+    public MultipleProgramStateRepository(String logFilePath) {
         this.logFilePath = logFilePath;
+        this.list = new ArrayList<ProgramState>();
     }
 
     @Override
     public void add(ProgramState programState) {
-        this.programState = programState;
+        list.add(programState);
     }
 
     @Override
     public List<ProgramState> getProgramStateList() {
-        List<ProgramState> list = new ArrayList<ProgramState>();
-        list.add(programState);
         return list;
     }
 
     @Override
     public void setProgramStateList(List<ProgramState> list) throws InterpreterException {
-        if (list == null || list.size() != 1)
-            throw new InterpreterException("error: there should be exactly one program in the list");
-
-        programState = list.get(0);
+        this.list = list;
     }
 
     @Override
@@ -98,9 +94,9 @@ public class SingleProgramStateRepository implements Repository {
     @Override
     public void deserialize(String serializeFilePath) throws InterpreterException {
         try (ObjectInputStream serializeFile = new ObjectInputStream(new FileInputStream(serializeFilePath))) {
-            SingleProgramStateRepository deserializedRepository =
-                    (SingleProgramStateRepository) serializeFile.readObject();
-            this.programState = deserializedRepository.programState;
+            MultipleProgramStateRepository deserializedRepository =
+                    (MultipleProgramStateRepository) serializeFile.readObject();
+            this.list = deserializedRepository.list;
             this.logFilePath = deserializedRepository.logFilePath;
         } catch (IOException e) {
             throw new InterpreterException("error: could not deserialize from the given file");
@@ -108,4 +104,5 @@ public class SingleProgramStateRepository implements Repository {
             throw new InterpreterException("error: could not deserialize from the given file due to class not found");
         }
     }
+
 }

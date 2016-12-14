@@ -2,6 +2,7 @@ package model;
 
 import model.statements.Statement;
 import utils.*;
+import utils.exceptions.InterpreterException;
 
 import java.io.BufferedReader;
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * Created by mirko on 12/10/2016.
  */
 public class ProgramState implements Serializable {
+    private int id;
     private ExecutionStack<Statement> executionStack;
     private SymbolTable<String, Integer> symbolTable;
     private Output<String> output;
@@ -30,6 +32,22 @@ public class ProgramState implements Serializable {
         this.fileDescriptorGenerator = fileDescriptorGenerator;
         this.heap = heap;
         this.heapAddressGenerator = heapAddressGenerator;
+    }
+
+    public boolean isCompleted() {
+        return executionStack.isEmpty();
+    }
+
+    public boolean isNotCompleted() {
+        return !isCompleted();
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public ExecutionStack<Statement> getExecutionStack() {
@@ -60,9 +78,18 @@ public class ProgramState implements Serializable {
         return fileDescriptorGenerator;
     }
 
+    public ProgramState executeOneStep() throws InterpreterException {
+        if (isCompleted())
+            throw new InterpreterException("error: program's execution is completed");
+
+        Statement statement = executionStack.pop();
+        return statement.execute(this);
+    }
+
     @Override
     public String toString() {
-        return executionStack.toString() + "\n"
+        return "Program #" + id + "\n"
+                + executionStack.toString() + "\n"
                 + symbolTable.toString() + "\n"
                 + output.toString() + "\n"
                 + fileTable.toString() + "\n"

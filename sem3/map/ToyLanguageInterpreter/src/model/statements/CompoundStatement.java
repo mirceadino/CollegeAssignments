@@ -17,10 +17,10 @@ public class CompoundStatement implements Statement {
 
     @Override
     public ProgramState execute(ProgramState programState) {
-        ExecutionStack<Statement>executionStack = programState.getExecutionStack();
+        ExecutionStack<Statement> executionStack = programState.getExecutionStack();
         executionStack.push(second);
         executionStack.push(first);
-        return programState;
+        return null;
     }
 
     @Override
