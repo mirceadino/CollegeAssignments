@@ -6,10 +6,6 @@ import model.statements.*;
 import utils.exceptions.InterpreterException;
 import view.TextMenu;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -361,18 +357,18 @@ public class ChooseProgramCommand extends Command {
                                                         new PrintStatement(
                                                                 new ArithExpr(
                                                                         new ConstExpr(100),
-                                                                        new ReadHeapExpression("v"),
+                                                                        new ReadHeapExpr("v"),
                                                                         '+')),
                                                         new CompoundStatement(
                                                                 new PrintStatement(
                                                                         new ArithExpr(
                                                                                 new ConstExpr(100),
-                                                                                new ReadHeapExpression("a"),
+                                                                                new ReadHeapExpr("a"),
                                                                                 '+')),
                                                                 new CompoundStatement(
                                                                         new WriteHeapStatement("a", new ConstExpr(30)),
                                                                         new CompoundStatement(
-                                                                                new PrintStatement(new ReadHeapExpression("a")),
+                                                                                new PrintStatement(new ReadHeapExpr("a")),
                                                                                 new AssignmentStatement("a", new ConstExpr(0))
                                                                         )
                                                                 )
@@ -451,7 +447,7 @@ public class ChooseProgramCommand extends Command {
                                                                 new AssignmentStatement("v", new ConstExpr(32)),
                                                                 new CompoundStatement(
                                                                         new PrintStatement(new VarExpr("v")),
-                                                                        new PrintStatement(new ReadHeapExpression("a"))
+                                                                        new PrintStatement(new ReadHeapExpr("a"))
                                                                 )
                                                         )
                                                 )
@@ -459,7 +455,7 @@ public class ChooseProgramCommand extends Command {
                                         ),
                                         new CompoundStatement(
                                                 new PrintStatement(new VarExpr("v")),
-                                                new PrintStatement(new ReadHeapExpression("a"))
+                                                new PrintStatement(new ReadHeapExpr("a"))
                                         )
                                 )
                         )
