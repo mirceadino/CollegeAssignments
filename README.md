@@ -1,6 +1,6 @@
 # College Assignments
 
-A collection of exercises and assignments at [http://www.cs.ubbcluj.ro/](Babes-Bolyai University).
+A collection of exercises and assignments at [Babes-Bolyai University](http://www.cs.ubbcluj.ro/).
 
 **Subjects**
 * [Advanced Programming Methods](/sem3/map/) (semester 3)
