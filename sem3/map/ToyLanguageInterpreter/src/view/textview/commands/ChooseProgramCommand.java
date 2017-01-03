@@ -1,10 +1,10 @@
-package view.commands;
+package view.textview.commands;
 
 import controller.Controller;
 import model.expressions.*;
 import model.statements.*;
 import utils.exceptions.InterpreterException;
-import view.TextMenu;
+import view.textview.TextMenu;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package view.commands;
+package view.textview.commands;
 
 import controller.Controller;
 import utils.exceptions.InterpreterException;

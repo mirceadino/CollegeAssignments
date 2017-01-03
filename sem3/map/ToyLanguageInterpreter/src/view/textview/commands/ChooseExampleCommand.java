@@ -1,10 +1,9 @@
-package view.commands;
+package view.textview.commands;
 
 import controller.Controller;
 import model.statements.Statement;
 import repository.MultipleProgramStateRepository;
 import repository.Repository;
-import repository.SingleProgramStateRepository;
 import utils.exceptions.ExitTextMenuException;
 import utils.exceptions.InterpreterException;
 

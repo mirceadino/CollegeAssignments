@@ -1,10 +1,9 @@
-package view;
+package view.textview;
 
 import utils.exceptions.ExitTextMenuException;
 import utils.exceptions.InterpreterException;
-import view.commands.Command;
+import view.textview.commands.Command;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;

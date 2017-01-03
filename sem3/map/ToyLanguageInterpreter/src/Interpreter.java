@@ -1,8 +1,8 @@
 import controller.Controller;
 import repository.Repository;
 import repository.SingleProgramStateRepository;
-import view.TextMenu;
-import view.commands.*;
+import view.textview.TextMenu;
+import view.textview.commands.*;
 
 import java.util.Scanner;
 
