@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class Controller {
     private Repository repository;
     private ExecutorService executor;
+    private boolean canExecute;
 
     public Controller(Repository repository) {
         this.repository = repository;
@@ -27,6 +28,7 @@ public class Controller {
 
     public void setRepository(Repository repository) {
         this.repository = repository;
+        this.canExecute = true;
     }
 
     public void addProgram(Statement statement) {
@@ -46,41 +48,59 @@ public class Controller {
     }
 
     public void executeOneStepForAllPrograms(List<ProgramState> list) throws InterpreterException {
-        List<Callable<ProgramState>> callableList = list.stream()
-                .map(p ->
-                        (Callable<ProgramState>) (() -> {
-                            return p.executeOneStep();
-                        })
-                )
-                .collect(Collectors.toList());
+        if (!canExecute) {
+            throw new InterpreterException("error: can't execute due to error the past");
+        }
 
-        List<ProgramState> newList;
         try {
-            newList = executor.invokeAll(callableList).stream()
-                    .map(future -> {
-                        try {
-                            return future.get();
-                        } catch (InterruptedException e) {
-                            throw new InterpreterException("error: interrupted exception");
-                        } catch (ExecutionException e) {
-                            throw new InterpreterException("error: execution exception");
-                        }
-                    })
-                    .filter(p -> p != null)
+            List<Callable<ProgramState>> callableList = list.stream()
+                    .map(p ->
+                            (Callable<ProgramState>) (p::executeOneStep)
+                    )
                     .collect(Collectors.toList());
-        } catch (InterruptedException e) {
-            throw new InterpreterException("error: interrupted exception");
+
+
+            List<ProgramState> newList;
+            try {
+                newList = executor.invokeAll(callableList).stream()
+                        .map(future -> {
+                            try {
+                                return future.get();
+                            } catch (InterruptedException e) {
+                                throw new InterpreterException("error: interrupted exception");
+                            } catch (ExecutionException e) {
+                                throw new InterpreterException("error: execution exception");
+                            }
+                        })
+                        .filter(p -> p != null)
+                        .collect(Collectors.toList());
+            } catch (InterruptedException e) {
+                throw new InterpreterException("error: interrupted exception");
+            }
+
+            for (ProgramState newProgramState : newList) {
+                list.add(newProgramState);
+            }
+
+            list.forEach(p -> {
+                repository.logProgramState(p);
+            });
+
+            repository.setProgramStateList(list);
+
+        } catch (InterpreterException e) {
+            canExecute = false;
+            throw e;
         }
+    }
 
-        for (ProgramState newProgramState : newList) {
-            list.add(newProgramState);
+    public void executeOneStep() throws InterpreterException {
+        executor = Executors.newFixedThreadPool(2);
+        List<ProgramState> list = removeCompletedPrograms(repository.getProgramStateList());
+        if (list.size() != 0) {
+            executeOneStepForAllPrograms(list);
         }
-
-        list.forEach(p -> {
-            repository.logProgramState(p);
-        });
-
-        repository.setProgramStateList(list);
+        executor.shutdownNow();
     }
 
     public void executeAllSteps() throws InterpreterException {
@@ -108,6 +128,10 @@ public class Controller {
             result.append(programState + "\n");
         }
         return result.toString();
+    }
+
+    public List<ProgramState> getCurrentProgramStates() {
+        return repository.getProgramStateList();
     }
 
     public void serializeRepository(String serializeFilePath) throws InterpreterException {

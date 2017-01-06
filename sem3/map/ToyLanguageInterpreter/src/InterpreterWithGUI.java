@@ -4,24 +4,48 @@
 
 import controller.Controller;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import repository.MultipleProgramStateRepository;
 import repository.Repository;
-import repository.SingleProgramStateRepository;
-import view.gui.GUI;
+import view.gui.MainWindowController;
+
+import java.io.IOException;
 
 public class InterpreterWithGUI extends Application {
+    private BorderPane mainWindow;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Repository repository = new SingleProgramStateRepository("./logs/alllogs.txt");
+    public void start(Stage primaryStage) {
+        Repository repository = new MultipleProgramStateRepository("./logs/alllogs.txt");
         Controller controller = new Controller(repository);
-        GUI gui = new GUI(controller);
 
-        gui.show(primaryStage);
+        createMainWindow(primaryStage, controller);
     }
 
+    private void createMainWindow(Stage primaryStage, Controller controller) {
+        try {
+            //Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(InterpreterWithGUI.class.getResource("./view/gui/MainWindow.fxml"));
+            mainWindow = loader.load();
+
+            // Show the scene containing the root layout.
+            MainWindowController mainWindowController = loader.getController();
+            mainWindowController.setController(controller);
+
+            Scene scene = new Scene(mainWindow);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
