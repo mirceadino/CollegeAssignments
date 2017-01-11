@@ -1,0 +1,5 @@
+/Users/mirko/Documents/facultate/sem3/map/ToySharpLanguageInterpreter/ToySharpLanguageInterpreter/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/mirko/Documents/facultate/sem3/map/ToySharpLanguageInterpreter/ToySharpLanguageInterpreter/bin/Debug/ToySharpLanguageInterpreter.exe.mdb
+/Users/mirko/Documents/facultate/sem3/map/ToySharpLanguageInterpreter/ToySharpLanguageInterpreter/bin/Debug/ToySharpLanguageInterpreter.exe
+/Users/mirko/Documents/facultate/sem3/map/ToySharpLanguageInterpreter/ToySharpLanguageInterpreter/obj/x86/Debug/ToySharpLanguageInterpreter.exe
+/Users/mirko/Documents/facultate/sem3/map/ToySharpLanguageInterpreter/ToySharpLanguageInterpreter/obj/x86/Debug/ToySharpLanguageInterpreter.exe.mdb

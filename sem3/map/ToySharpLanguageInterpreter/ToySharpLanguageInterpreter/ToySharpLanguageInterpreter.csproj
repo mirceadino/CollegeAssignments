@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{155E5C24-6982-40A9-B60E-CA7453E00DBA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ToySharpLanguageInterpreter</RootNamespace>
+    <AssemblyName>ToySharpLanguageInterpreter</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Interpreter.cs" />
+    <Compile Include="src\controller\Controller.cs" />
+    <Compile Include="src\model\ProgramState.cs" />
+    <Compile Include="src\model\expressions\ArithExpr.cs" />
+    <Compile Include="src\model\expressions\ConstExpr.cs" />
+    <Compile Include="src\model\expressions\Expression.cs" />
+    <Compile Include="src\model\expressions\VarExpr.cs" />
+    <Compile Include="src\model\statements\AssignmentStatement.cs" />
+    <Compile Include="src\model\statements\CloseRFileStatement.cs" />
+    <Compile Include="src\model\statements\CompoundStatement.cs" />
+    <Compile Include="src\model\statements\IfStatement.cs" />
+    <Compile Include="src\model\statements\OpenRFileStatement.cs" />
+    <Compile Include="src\model\statements\PrintStatement.cs" />
+    <Compile Include="src\model\statements\ReadFileStatement.cs" />
+    <Compile Include="src\model\statements\Statement.cs" />
+    <Compile Include="src\repository\Repository.cs" />
+    <Compile Include="src\repository\SingleProgramStateRepository.cs" />
+    <Compile Include="src\utils\ExecutionStack.cs" />
+    <Compile Include="src\utils\ExecutionStackImpl.cs" />
+    <Compile Include="src\utils\FileData.cs" />
+    <Compile Include="src\utils\FileDescriptorGenerator.cs" />
+    <Compile Include="src\utils\FileDescriptorGeneratorImpl.cs" />
+    <Compile Include="src\utils\FileTable.cs" />
+    <Compile Include="src\utils\FileTableImpl.cs" />
+    <Compile Include="src\utils\Output.cs" />
+    <Compile Include="src\utils\OutputImpl.cs" />
+    <Compile Include="src\utils\SymbolTable.cs" />
+    <Compile Include="src\utils\SymbolTableImpl.cs" />
+    <Compile Include="src\utils\exceptions\ExitTextMenuException.cs" />
+    <Compile Include="src\utils\exceptions\InterpreterException.cs" />
+    <Compile Include="src\view\TextMenu.cs" />
+    <Compile Include="src\view\commands\ChooseExampleCommand.cs" />
+    <Compile Include="src\view\commands\ChooseProgramCommand.cs" />
+    <Compile Include="src\view\commands\Command.cs" />
+    <Compile Include="src\view\commands\ExecuteAllStepsCommand.cs" />
+    <Compile Include="src\view\commands\ExecuteOneStepCommand.cs" />
+    <Compile Include="src\view\commands\ExitCommand.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="test.in" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
