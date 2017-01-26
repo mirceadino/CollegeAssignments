@@ -37,7 +37,9 @@ public class ForkStatement implements Statement {
                 programState.getFileTable(),
                 programState.getFileDescriptorGenerator(),
                 programState.getHeap(),
-                programState.getHeapGenerator());
+                programState.getHeapGenerator(),
+                programState.getLockTable(),
+                programState.getLockGenerator());
         newProgramState.setId(programState.getId() + 1);
 
         return newProgramState;

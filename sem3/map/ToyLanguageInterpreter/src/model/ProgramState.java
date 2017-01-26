@@ -19,12 +19,16 @@ public class ProgramState implements Serializable {
     private NumberGenerator fileDescriptorGenerator;
     private Heap<Integer, Integer> heap;
     private NumberGenerator heapAddressGenerator;
+    private LockTable<Integer, Integer> lockTable;
+    private NumberGenerator lockAddressGenerator;
 
     public ProgramState(ExecutionStack<Statement> executionStack,
                         SymbolTable<String, Integer> symbolTable,
                         Output<String> output, FileTable<Integer, FileData<String, BufferedReader>> fileTable,
                         NumberGenerator fileDescriptorGenerator, Heap<Integer, Integer> heap,
-                        NumberGenerator heapAddressGenerator) {
+                        NumberGenerator heapAddressGenerator,
+                        LockTable<Integer, Integer> lockTable,
+                        NumberGenerator lockAddressGenerator) {
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
         this.output = output;
@@ -32,6 +36,8 @@ public class ProgramState implements Serializable {
         this.fileDescriptorGenerator = fileDescriptorGenerator;
         this.heap = heap;
         this.heapAddressGenerator = heapAddressGenerator;
+        this.lockTable = lockTable;
+        this.lockAddressGenerator = lockAddressGenerator;
     }
 
     public boolean isCompleted() {
@@ -75,7 +81,15 @@ public class ProgramState implements Serializable {
     }
 
     public NumberGenerator getHeapGenerator() {
-        return fileDescriptorGenerator;
+        return heapAddressGenerator;
+    }
+
+    public LockTable<Integer, Integer> getLockTable() {
+        return lockTable;
+    }
+
+    public NumberGenerator getLockGenerator() {
+        return lockAddressGenerator;
     }
 
     public ProgramState executeOneStep() throws InterpreterException {

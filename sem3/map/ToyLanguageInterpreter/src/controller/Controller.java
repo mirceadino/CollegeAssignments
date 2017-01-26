@@ -39,11 +39,13 @@ public class Controller {
         NumberGenerator fileDescriptorGenerator = new NumberGeneratorImpl(0);
         Heap<Integer, Integer> heap = new HeapImpl<>();
         NumberGenerator heapAddressGenerator = new NumberGeneratorImpl(1);
+        LockTable<Integer, Integer> lockTable = new LockTableImpl<Integer, Integer>();
+        NumberGenerator lockAddressGenerator = new NumberGeneratorImpl(1);
 
         executionStack.push(statement);
 
         ProgramState program = new ProgramState(executionStack, symbolTable, output, fileTable, fileDescriptorGenerator,
-                heap, heapAddressGenerator);
+                heap, heapAddressGenerator, lockTable, lockAddressGenerator);
         repository.add(program);
     }
 
@@ -84,6 +86,7 @@ public class Controller {
 
             list.forEach(p -> {
                 repository.logProgramState(p);
+                System.out.println(p);
             });
 
             repository.setProgramStateList(list);

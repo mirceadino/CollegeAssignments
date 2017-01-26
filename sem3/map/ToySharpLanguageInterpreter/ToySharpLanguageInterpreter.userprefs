@@ -1,5 +1,9 @@
 ﻿<Properties StartupConfiguration="{155E5C24-6982-40A9-B60E-CA7453E00DBA}|Default">
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ToySharpLanguageInterpreter/src/Interpreter.cs">
+    <Files>
+      <File FileName="ToySharpLanguageInterpreter/src/Interpreter.cs" Line="23" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

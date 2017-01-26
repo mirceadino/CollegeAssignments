@@ -501,6 +501,214 @@ public class ChooseWindowController {
                 );
             }
 
+            case 12: {
+               /* v = 20;
+                  FOR(v=0; v<3; v=v+1) DO(FORK(PRINT(v); v=v+1;));
+                  PRINT(v*10); */
+
+                return new CompoundStatement(
+                        new AssignmentStatement(
+                                "v",
+                                new ConstExpr(20)),
+                        new CompoundStatement(
+                                new ForStatement(
+                                        new AssignmentStatement(
+                                                "v",
+                                                new ConstExpr(0)),
+                                        new BooleanExpr(
+                                                new VarExpr("v"),
+                                                new ConstExpr(3),
+                                                "<"),
+                                        new AssignmentStatement(
+                                                "v",
+                                                new ArithExpr(
+                                                        new VarExpr("v"),
+                                                        new ConstExpr(1),
+                                                        '+')),
+                                        new ForkStatement(
+                                                new CompoundStatement(
+                                                        new PrintStatement(new VarExpr("v")),
+                                                        new AssignmentStatement(
+                                                                "v",
+                                                                new ArithExpr(
+                                                                        new VarExpr("v"),
+                                                                        new ConstExpr(1),
+                                                                        '+'
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                ),
+                                new PrintStatement(
+                                        new ArithExpr(
+                                                new VarExpr("v"),
+                                                new ConstExpr(10),
+                                                '*'
+                                        )
+                                )
+                        )
+                );
+            }
+
+            case 13: {
+                /* NEW(v1, 20);
+                   NEW(v2, 30);
+                   NEWLOCK(x);
+
+                   FORK(FORK(LOCK(x), WRITEHEAP(v1, READHEAP(v1) - 1), UNLOCK(x))
+                        LOCK(x), WRITEHEAP(v1, READHEAP(v1) + 1), UNLOCK(x));
+
+                   NEWLOCK(q);
+                   FORK(FORK(LOCK(q), WRITEHEAP(v2, READHEAP(v2) + 5), UNLOCK(q))
+                        m = 100; LOCK(q); WRITEHEAP(v2, READHEAP(v2) + 1), UNLOCK(q));
+
+                   z = 200; z = 300; z = 400;
+
+                   LOCK(x);
+                   PRINT(READHEAP(v1));
+                   UNLOCK(x);
+
+                   LOCK(q);
+                   PRINT(READHEAP(v2));
+                   UNLOCK(q); */
+
+                return new CompoundStatement(
+                        new NewStatement(
+                                "v1",
+                                new ConstExpr(20)
+                        ),
+                        new CompoundStatement(
+                                new NewStatement(
+                                        "v2",
+                                        new ConstExpr(30)
+                                ),
+                                new CompoundStatement(
+                                        new NewLockStatement("x"),
+
+                                        new CompoundStatement(
+                                                new ForkStatement(
+                                                        new CompoundStatement(
+                                                                new ForkStatement(
+                                                                        new CompoundStatement(
+                                                                                new LockStatement("x"),
+                                                                                new CompoundStatement(
+                                                                                        new WriteHeapStatement("v1",
+                                                                                                new ArithExpr(
+                                                                                                        new ReadHeapExpr("v1"),
+                                                                                                        new ConstExpr(1),
+                                                                                                        '-'
+                                                                                                )),
+                                                                                        new UnlockStatement("x")
+                                                                                )
+                                                                        )
+                                                                ),
+                                                                new CompoundStatement(
+                                                                        new LockStatement("x"),
+                                                                        new CompoundStatement(
+                                                                                new WriteHeapStatement("v1",
+                                                                                        new ArithExpr(
+                                                                                                new ReadHeapExpr("v1"),
+                                                                                                new ConstExpr(1),
+                                                                                                '+'
+                                                                                        )),
+                                                                                new UnlockStatement("x")
+                                                                        )
+                                                                )
+                                                        )
+                                                ),
+
+                                                new CompoundStatement(
+                                                        new NewLockStatement("q"),
+
+                                                        new CompoundStatement(
+                                                                new ForkStatement(
+                                                                        new CompoundStatement(
+                                                                                new ForkStatement(
+                                                                                        new CompoundStatement(
+                                                                                                new LockStatement("q"),
+                                                                                                new CompoundStatement(
+                                                                                                        new WriteHeapStatement("v2",
+                                                                                                                new ArithExpr(
+                                                                                                                        new ReadHeapExpr("v2"),
+                                                                                                                        new ConstExpr(5),
+                                                                                                                        '+'
+                                                                                                                )),
+                                                                                                        new UnlockStatement("q")
+                                                                                                )
+                                                                                        )
+                                                                                ),
+                                                                                new CompoundStatement(
+                                                                                        new LockStatement("q"),
+                                                                                        new CompoundStatement(
+                                                                                                new WriteHeapStatement("v2",
+                                                                                                        new ArithExpr(
+                                                                                                                new ReadHeapExpr("v2"),
+                                                                                                                new ConstExpr(1),
+                                                                                                                '+'
+                                                                                                        )),
+                                                                                                new UnlockStatement("q")
+                                                                                        )
+                                                                                )
+                                                                        )
+                                                                ),
+
+                                                                new CompoundStatement(
+                                                                        new AssignmentStatement("z", new ConstExpr(200)),
+                                                                        new CompoundStatement(
+                                                                                new AssignmentStatement("z", new ConstExpr(300)),
+                                                                                new CompoundStatement(
+                                                                                        new AssignmentStatement("z", new ConstExpr(400)),
+
+                                                                                        new CompoundStatement(
+                                                                                                new LockStatement("x"),
+                                                                                                new CompoundStatement(
+                                                                                                        new PrintStatement(new ReadHeapExpr("v1")),
+                                                                                                        new CompoundStatement(
+                                                                                                                new UnlockStatement("x"),
+
+                                                                                                                new CompoundStatement(
+                                                                                                                        new LockStatement("q"),
+                                                                                                                        new CompoundStatement(
+                                                                                                                                new PrintStatement(new ReadHeapExpr("v2")),
+                                                                                                                                new UnlockStatement("q")
+                                                                                                                        )
+                                                                                                                )
+                                                                                                        )
+                                                                                                )
+                                                                                        )
+                                                                                )
+                                                                        )
+                                                                )
+
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                );
+            }
+
+            case 14:
+                /* NEWLOCK(x)
+                   FORK(a = 1; PRINT(a); LOCK(x));
+                   LOCK(x) */
+
+                return new CompoundStatement(
+                        new NewLockStatement("x"),
+                        new CompoundStatement(
+                                new ForkStatement(
+                                        new CompoundStatement(
+                                                new AssignmentStatement("a", new ConstExpr(1)),
+                                                new CompoundStatement(
+                                                        new PrintStatement(new VarExpr("a")),
+                                                        new LockStatement("b")
+                                                )
+                                        )
+                                ),
+                                new LockStatement("x")
+                        )
+                );
+
             default: {
                 return null;
             }

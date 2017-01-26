@@ -70,6 +70,15 @@ public class MainWindowController {
     @FXML
     private TableColumn<Map.Entry<String, Integer>, String> symbolTableValue;
 
+    @FXML
+    private TableView<Map.Entry<Integer, Integer>> lockTableBox;
+
+    @FXML
+    private TableColumn<Map.Entry<Integer, Integer>, String> lockTableKey;
+
+    @FXML
+    private TableColumn<Map.Entry<Integer, Integer>, String> lockTableValue;
+
     private Controller controller;
 
     public void setController(Controller controller) {
@@ -135,6 +144,7 @@ public class MainWindowController {
         populateFileTable(index);
         populateSymbolTable(index);
         populateExecutionStack(index);
+        populateLockTable(index);
     }
 
     @FXML
@@ -155,6 +165,12 @@ public class MainWindowController {
                 p -> new SimpleStringProperty(p.getValue().getKey() + ""));
 
         symbolTableValue.setCellValueFactory(
+                p -> new SimpleStringProperty(p.getValue().getValue() + ""));
+
+        lockTableKey.setCellValueFactory(
+                p -> new SimpleStringProperty(p.getValue().getKey() + ""));
+
+        lockTableValue.setCellValueFactory(
                 p -> new SimpleStringProperty(p.getValue().getValue() + ""));
     }
 
@@ -262,6 +278,24 @@ public class MainWindowController {
 
         executionStackBox.setItems(model);
         executionStackBox.refresh();
+    }
+
+    private void populateLockTable(int index) {
+        ObservableList<Map.Entry<Integer, Integer>> model;
+
+        if (index == -1) {
+            model = FXCollections.observableArrayList(new ArrayList<>());
+
+        } else {
+            List<ProgramState> programs = controller.getCurrentProgramStates();
+            ProgramState program = programs.get(index);
+            List<Map.Entry<Integer, Integer>> elements = iterableToList(program.getLockTable().getAll());
+
+            model = FXCollections.observableArrayList(elements);
+        }
+
+        lockTableBox.setItems(model);
+        lockTableBox.refresh();
     }
 
     private <E> List<E> iterableToList(Iterable<E> iterable) {

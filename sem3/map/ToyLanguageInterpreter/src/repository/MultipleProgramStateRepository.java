@@ -76,6 +76,12 @@ public class MultipleProgramStateRepository implements Repository {
             }
             logFile.append("\n");
 
+            logFile.append("LockTable\n");
+            for (Map.Entry<Integer, Integer> entry : programState.getLockTable().getAll()) {
+                logFile.append("  " + entry.getKey() + " --> " + entry.getValue() + "\n");
+            }
+            logFile.append("\n");
+
             logFile.append("-------------------\n");
         } catch (IOException error) {
             throw new InterpreterException("error: could not write to the given file");
