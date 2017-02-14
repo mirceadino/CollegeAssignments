@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+
+
+
+( DATA DECLARATIONS )
+variable init
+
+
+( WORD AND CONST DECLARATIONS )
+: N 0;
+: U 1;
+: D 2;
+: L 3;
+: R 4;
+: END -1;
+
+
+( CODE )
+init @ if
+
+else
+  1 init !
+  END
+  D
+  R
+  U
+  R
+  D
+then
+
+( END )
+quit

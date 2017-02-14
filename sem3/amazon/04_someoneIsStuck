@@ -1,0 +1,43 @@
+(START_DATA)
+variable init
+(END_DATA)
+
+(START_WORDS)
+
+(3 n ASSIGN == assign the value 3 to the variable n)
+: ASSIGN !;
+
+(n PUSH == push the value of variable n on top of the stack )
+: PUSH @;
+
+(n PUSHA == push the address of variable n on top of the stack )
+: PUSHA;
+: N 0;
+: U 1;
+: D 2;
+: L 3;
+: R 4;
+: END -1;
+
+(END_WORDS)
+
+(START_CODE)
+init PUSH
+if
+else
+  ( 0 - nothing )
+  ( 1 - up )
+  ( 2 - down )
+  ( 3 - left )
+  ( 4 - right )
+  ( -1 - stop )
+  1 init ASSIGN
+  END
+  R R R R
+  D D
+  L L L U L
+  U R R
+  L L
+then
+quit
+(END_CODE)
