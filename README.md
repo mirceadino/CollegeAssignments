@@ -18,4 +18,4 @@ A collection of Computer Science exercises and assignments at [Babes-Bolyai Univ
 * [Logic and Functional Programming](/sem3/plf/) (semester 3)
 * [Object-Oriented Programming](/sem2/oop/labs/) (semester 2)
 * Operating Systems (semester 2)
-* Probability and Statistics (semester 3)
+* [Probability and Statistics](/sem3/ps/LabSolutions) (semester 3)
