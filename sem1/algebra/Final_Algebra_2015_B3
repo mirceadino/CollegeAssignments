@@ -1,0 +1,56 @@
+[1] (a) Define and give an example for: echelon form of a matrix, matrix of a list of vectors.
+(b) Let f:V->V' be a K-vector space, B, B' bases for V, V', x e V. Prove that:
+[f(v)]B' = [f]BB' * [v]B'.
+
+[2] Let f:R^4->R^3 be a K-liniar map from R^4 to R^3, f(x,y,z,t) = (x+?y+?z+?t, 2x+?y+?z+?t, 3x+?y+?z+?t). Write [f]EE' and find the dimension of Im f.
+
+[3] Prove that A is invertible and find its inverse.
+A = (1 1 1
+     1 0 1
+     3 3 2)
+
+[4] Find the eigenvalues and eigenvectors for A.
+A = (0 1 1 
+     1 0 1
+     1 1 0)
+
+[5] (5,2)-code with parity check matrix H. Write the table of syndrome and coset leaders and decode the received word 10101.
+H = (1 0 0 1 1
+     0 1 0 0 1
+     0 0 1 1 0)
+
+-------
+
+Short notes:
+
+[1] (b) Proved at the lecture.
+
+[2] dim Im f = 2; echelon form for the matrix of the list f(e1), f(e2), f(e3), f(e4) was: 
+C = (1 2 3
+     0 5 5
+     0 0 0
+     0 0 0)
+                
+[3] det A = 1
+    A^-1 = (-3  1  1
+             1 -1  0
+             3  0 -1)
+             
+[4] eigenvalues: -1 and 2
+    eigenvectors: (alfa, beta, -alfa-beta) and (alfa, alfa, alfa)
+    
+[5] syndrome | coset leader
+    -----------------------
+       000   |    00000
+       001   |    00100
+       010   |    01000
+       011   |    01100
+       100   |    10000
+       101   |    00010
+       110   |    00001
+       111   |    01010
+       
+[u] = [1 0 1 0 1]T
+H * [u] = [0 1 1]T
+011 is syndrome and its corresponding coset leader is e = 01100
+u - e = 10101 - 01100 = 11001, so the message is 01

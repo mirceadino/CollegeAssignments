@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://www.cs.ubbcluj.ro/~mihai-suciu/asc/lab4_en.html -->
+<html lang="en" hola_ext_inject="disabled"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+    <title>Laboratory 4</title>
+
+</head>
+
+
+
+<body>
+
+    <strong>Arithmetic instructions - continued</strong><br><br>
+
+    In this lab you will solve some expression using arithmetic instructions. <br><br>
+
+	
+
+	<p>The syntax for instructions <b>ADD, SUB, INC, DEC, NEG, MOV, CBW</b> can be found <a href="http://www.cs.ubbcluj.ro/~mihai-suciu/asc/lab3_en.html">here</a>.</p>
+
+	
+
+	<ul>
+
+	<p></p><li><b>ADC d, s</b></li>
+
+    - Add with carry;<br> 
+
+	- effect: d = d + s + CF; <br>
+
+    - this instruction is useful for adding numbers that are larger than 16 bits;<br>
+
+    - <b>both operands must be the same type</b>, e.g. byte or word;<br> 
+
+    - at least one operand <b>must be</b> a register or a constant, if it is a constant it cannot be the destination, d.
+
+    <p></p>
+
+	
+
+	<p>
+
+	</p><li><b>SBB d, s</b></li>
+
+	- Subtract with borrow;<br> 
+
+	- effect: d = d - s - CF; <br>
+
+	- this instruction is useful for subtracting numbers that are larger than 16 bits;<br>
+
+    - <b>both operands must be the same type</b>, e.g. byte or word;<br> 
+
+    - at least one operand <b>must be</b> a register or a constant, if it is a constant it cannot be the destination, d.
+
+	<p></p>
+
+	
+
+	<p>
+
+	</p><li><b>MUL s</b></li>
+
+	- <b>unsigned multiplication</b>, i.e. the operand is an unsigned number;<br>
+
+	- effect: 
+
+		<ol>
+
+		<li>AX &#8592; s * AL, if source is a byte (byte * byte = word);</li>
+
+		<li>DX<b>:</b>AX &#8592; s * AX, if source is a word (word * word = double-word);</li>
+
+		</ol>
+
+	- the carry and Overflow flags are set if the upper half of the result (AH for a byte source, DX for a word source) contains any significant digits of the product, otherwise they are cleared.
+
+	<p></p>
+
+	
+
+	<p>
+
+	</p><li><b>IMUL s</b></li>
+
+	- <b>signed multiplication</b>, i.e. the operand is a signed number;<br>
+
+	- effect: 
+
+		<ol>
+
+		<li>AX &#8592; s * AL, if source is a byte (byte * byte = word);</li>
+
+		<li>DX<b>:</b>AX &#8592; s * AX, if source is a word (word * word = double-word);</li>
+
+		</ol>
+
+	- the Carry Flag and Overflow Flag are set if the upper half of the result (AH for a byte source, DX for a word source) contains any significant digits of the product, otherwise they are cleared.
+
+	<p></p>
+
+	
+
+	<p>
+
+	</p><li><b>DIV s</b></li>
+
+	- <b>unsigned integer division</b>, i.e. the operand is an unsigned number;<br>
+
+	- effect: 
+
+		<ol>
+
+		<li>AL &#8592; AX / s, AH &#8592; remainder, if source is a byte (word / byte = byte);</li>
+
+		<li>AX &#8592; DX<b>:</b>AX / s, DX &#8592; remainder, if source is a word (double-word / word = word);</li>
+
+		</ol>
+
+	- if the result is too large to fit in the destination (AL or AX), an INT 0 (Divide by Zero) is generated, and the quotient and remainder are undefined.
+
+	<p></p>
+
+	
+
+	<p>
+
+	</p><li><b>IDIV s</b></li>
+
+	- <b>signed integer division</b>, i.e. the operand is a signed number;<br>
+
+	- effect: 
+
+		<ol>
+
+		<li>AL &#8592; AX / s, AH &#8592; remainder, if source is a byte (word / byte = byte);</li>
+
+		<li>AX &#8592; DX<b>:</b>AX / s, DX &#8592; remainder, if source is a word (double-word / word = word);</li>
+
+		</ol>
+
+	- if the result is too large to fit in the destination (AL or AX), an INT 0 (Divide by Zero) is generated, and the quotient and remainder are undefined.
+
+	<p></p>
+
+	
+
+	<p>
+
+	</p><li><b>CWD</b></li>
+
+	- Extends the sign bit from the AX register into the DX register, i.e converts the word stored in register AX into a double-word stored in register DX<b>:</b>AX in the signed interpretation<br> 
+
+	- effect: 
+
+		<ol>
+
+		<li>DX &#8592; 0, if AX &lt; 8000h</li>
+
+		<li>DX &#8592; 0FFFFh, if AX &gt; 8000h</li>
+
+		</ol>
+
+	<p></p>
+
+	
+
+	<p>
+
+	</p><li><b>PTR operator</b></li>
+
+	- PTR operator specifies the type of a variable or label (specifies the variable dimension), i.e. a non destructive conversion from a word or a double-word into a byte or word;<br> 
+
+	- syntax: <i>type</i> <b>PTR</b> <i>expression</i>;<br>
+
+	- effect: the PTR operator forces the <i>expression</i> to be treated as having the specified <i>type</i>;<br>
+
+	- <i>type</i> can be: <b>BYTE, WORD, DWORD, QWORD</b>;<br>
+
+	- <b>obs</b> remember little-endian!!<br>
+
+	- e.g.<br>
+
+	<table align="center" cellspacing="0" cellpadding="0"><tbody><tr><td><pre class="code">
+	.DATA
+
+	a DW 1234h
+
+	.CODE
+
+	mov al, byte ptr a ;al = 34h, loads a byte size value from a word size variable
+
+	mov ah, byte ptr a+1 ;ah = 12h
+
+	</pre></td></tr></tbody></table>
+
+	<p></p>
+
+	</ul>
+
+	
+
+	<p>
+
+	
+
+	</p>
+
+	<p>
+
+	Solve the following problems in both signed and unsigned representation. Follow the data segment and try to understand little-endian representation!! (To view the Data Segment in Turbo Debugger in the CPU window right click in the data sub-window - the bottom sub-window - and select Goto and go to the beginning of Data Segment - address DS:0000h)<br>
+
+	1. x = a + b, where a, b - double-word variables, e.g. a = 12345678h, b = 1111ffffh, x = ?<br>
+
+	2. x = a - b, where a, b - double-word variables<br>
+
+	3. x = (a * b - c) / d, where a,b,d - byte and c - double-word<br>
+
+    4. x = a + b, where a,b - word and a = 1234h,5678h,1234h,0; b = 1111h,2222h,3333h<br>	
+
+	</p><table align="center" cellspacing="0" cellpadding="0"><tbody><tr><td><pre class="code">
+	.DATA
+
+	a dw 1234h,5678h,1234h,0
+
+	b dw 1111h,2222h,3333h
+
+	</pre></td></tr>
+
+	</tbody></table>
+
+    5. x = a * b, where a, b are unsigned variables on 48 and 16 bits<br>
+
+	<table align="center" cellspacing="0" cellpadding="0"><tbody><tr><td><pre class="code">
+	.DATA
+
+	a dw 1234h,5678h,1234h
+
+	b dw 2222h
+
+	</pre></td></tr>
+
+	</tbody></table>
+
+    <li><a href="http://www.cs.ubbcluj.ro/~mihai-suciu/asc/lab4_ex.html">An example</a></li><a href="http://www.cs.ubbcluj.ro/~mihai-suciu/asc/lab4_ex.html"> 
+
+	<p></p>
+
+	</a><p><a href="http://www.cs.ubbcluj.ro/~mihai-suciu/asc/lab4_ex.html">
+
+     <b></b></a><b><a href="http://www.cs.ubbcluj.ro/~mihai-suciu/asc/lab4_homework.html"></a></b></p><li><b><a href="http://www.cs.ubbcluj.ro/~mihai-suciu/asc/lab4_homework.html">Homework</a></b>, deadline - 1 day.</li><br>
+
+    <li><a href="http://www.cs.ubbcluj.ro/~vancea/asc/index-en.html">Computer Systems Architecture</a> - course page</li>   
+
+	<p></p>
+
+    
+
+
+
+
+
+
+
+</body></html>

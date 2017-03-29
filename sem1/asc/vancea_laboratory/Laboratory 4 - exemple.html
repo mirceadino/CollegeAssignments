@@ -1,0 +1,102 @@
+
+<!-- saved from url=(0054)http://www.cs.ubbcluj.ro/~mihai-suciu/asc/lab4_ex.html -->
+<html hola_ext_inject="disabled"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Laboratory 4 - exemple</title>
+</head>
+
+<body>
+
+<strong>Laboratory 4 - exemple</strong><br><br>
+
+a+b/c-d*2<br>
+a-doubleword; b,d-byte; c-word<br><br>
+
+<strong>;unsigned representation</strong><br>
+assume cs:code, ds:data<br>
+data segment<br>
+	a dd 125<br>
+	b db 2<br>
+	c dw 15<br>
+	d db 200<br>
+data ends<br>
+code segment<br>
+start:<br>
+	mov ax, data<br>
+	mov ds, ax<br><br>
+
+	;for computing b/c, we convert b from byte to doubleword, so that we can divide it by the word c<br>
+	mov al, b<br>
+	mov ah, 0	;unsigned conversion from al to ax<br>
+	mov dx, 0	;unsigned conversion from ax to dx:ax<br>
+	;dx:ax = b<br>
+	div c		;unsigned division dx:ax by c<br>
+	;ax=b/c	;the quotient of the division is in ax (the remainder is in dx, but we only use the quotient in the further computations)<br><br>
+
+	mov bx, ax	;we save b/c in bx so that we can use ax for multiplying d and 2<br>
+	mov al, 2<br>
+	mul d		;ax=d*2<br><br>
+
+	sub bx, ax	;bx=b/c-d*2<br>
+	; we convert the word bx to doubleword so that we can add it with the doubleword a<br>
+	mov cx, 0	; unsigned conversion from bx to cx:bx<br>
+	;cx:bx=b/c-d*2<br><br>		
+
+	mov ax, word ptr a<br>
+	mov dx, word ptr a+2	;dx:ax=a<br><br>
+
+	add ax, bx<br>
+	adc dx, cx	;the final results is in dx:ax<br><br>
+
+	mov ax, 4C00h<br>
+	int 21h<br>
+code ends<br>
+end start<br>
+
+<br><br>
+
+<strong>;signed representation</strong><br>
+assume cs:code, ds:data<br>
+data segment<br>
+	a dd 125<br>
+	b db 2<br>
+	c dw 15<br>
+	d db 200<br>
+data ends<br>
+code segment<br>
+start:<br>
+	mov ax, data<br>
+	mov ds, ax<br><br>
+
+	;for computing b/c, we convert b from byte to doubleword, so that we can divide it by the word c<br>
+	mov al, b<br>
+	cbw	;signed conversion from al to ax<br>
+	cwd	;signed conversion from ax to dx:ax<br>
+	;dx:ax = b<br>
+	idiv c		;signed division dx:ax by c<br>
+	;ax=b/c	;the quotient of the division is in ax (the remainder is in dx, but we only use the quotient in the further computations)<br><br>
+
+	mov bx, ax	;we save b/c in bx so that we can use ax for multiplying d and 2<br>
+	mov al, 2<br>
+	imul d		;ax=d*2<br><br>
+
+	sub bx, ax	;bx=b/c-d*2<br>
+	; we convert the word bx to doubleword so that we can add it with the doubleword a<br>
+	mov ax, bx<br>
+	cwd	; signed conversion from ax to dx:ax<br>
+	;dx:ax=b/c-d*2<br><br>
+
+	mov bx, word ptr a<br>
+	mov cx, word ptr a+2	;cx:bx=a<br><br>
+
+	add bx, ax<br>
+	adc cx, dx	;the final results is in bx:cx<br><br>
+
+	mov ax, 4C00h<br>
+	int 21h<br>
+code ends<br>
+end start<br><br>
+
+
+
+
+</body></html>

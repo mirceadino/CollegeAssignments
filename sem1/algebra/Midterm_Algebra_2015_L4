@@ -1,0 +1,23 @@
+[1] (a) Define and give an example for: partition, subgroup, dimension.
+(b) Let V be a vector space over K and X = (v1,..,vn) a list of vectors. Prove that: X is a basis <=> every v in V can be uniquely written as a linear combination of vectors from X.
+
+[2] Let Z[i] = {a + bi / a,b e Z}. Show that (Z[i], +, *) is a commutative ring with identity and find its invertible elements.
+
+[3] Justify if the following sets are subspaces of V over R:
+(a) S = {(x,y,z,t) / xy = zt}, V = R^4
+(b) S = {f e R[X] / degree(f) = 0}, V = R[X]
+
+[4] Let B = (v1,v2,v3,v4). v1 = (1,1,0,1), v2 = (1,0,0,1), v3 = (0,1,1,0), v4 = (0,0,1,1). Show that B is a basis for the canonical real vector space (R^4 over R), find the coordinates of u = (4,3,2,1) in basis B and find the vector with coordinates (4,3,2,1) in B.
+
+-------
+
+Short notes:
+
+[1] (b) Proved at the lecture.
+
+[2] U(Z[i]) = {1, -1, i, -i}
+
+[3] (a) Not a subspace: v1 = (2,0,2,0) e S, v2 = (0,1,0,3) e S, but v1+v2 = (2,1,2,3) is not in S.
+(b) Not a subspace: 0*f = 0 (zero polynomial) with degree being -oo.
+
+[4] u = (6,-2,5,-3), u' = (7,5,3,8)

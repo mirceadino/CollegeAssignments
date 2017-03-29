@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://www.cs.ubbcluj.ro/~mihai-suciu/asc/lab3_en.html -->
+<html lang="en" hola_ext_inject="disabled"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+    <title>Laboratory 3</title>
+
+</head>
+
+
+
+<body>
+
+    <strong>Simple arithmetic instructions</strong><br><br>
+
+    In this lab you will learn how to use some simple arithmetic instructions. <br><br>
+
+    
+
+    1. Instruction syntax:<br>
+
+     <b>ADD d, s </b><br>
+
+    d = d + s <br>
+
+    - sums the operands and stores the result in the destination<br>
+
+    - <b>both operands must be the same type</b>, e.g. byte or word (why?)<br> 
+
+    - at least one operand <b>should be</b> a register or a constant
+
+    <br><br>
+
+    
+
+    <b>INC d</b><br>
+
+    d = d + 1<br>
+
+    - the destination may be a byte or a word and is considered unsigned<br>
+
+    - does not set the carry flag!
+
+    <br><br>
+
+    
+
+     <b>SUB d, s</b><br>
+
+    d = d - s<br>
+
+    - substracts the source operand from the destination operand and stores the result in the destination<br>
+
+    - both operands must be the same type, e.g. byte or word<br>
+
+    - at least one operand <b>should be</b> a register or a constant
+
+    <br><br>
+
+    
+
+    <b>DEC d</b><br>
+
+    d = d - 1<br>
+
+    - the destination may be a byte or a word and is considered unsigned<br>
+
+    - does not set the carry flag!
+
+    <br><br>
+
+    
+
+    <b>NEG d</b><br>
+
+    d = 0 - d<br>
+
+    - operand may be a byte or a word<br>
+
+    - obtain the 2's complement of destination operand
+
+    <br><br>
+
+    <b>MOV d,s</b><br>
+
+    d = s<br>
+
+    - copies a byte or word from the source into the destination
+
+    <br><br>
+
+    <b>CBW</b><br>
+
+    AL -&gt; AX<br>
+
+    - converts the byte from AL into a word stored in AX, i.e. extends the sign bit of the AL register into the AH register<br>
+
+    <br><br>
+
+
+
+    
+
+    
+
+    <b>Obs.</b> there are no instructions for unsigned conversions.<br>
+
+    An unsigned conversion from byte to word is done by "moving" 0 into the higher byte of the word<br>
+
+    e.g. mov ah, 0h ;AL -&gt; AX
+
+    <br><br>
+
+    
+
+    2. Solve the following problems in both signed and unsigned convention. As an experiment violate the restrictions imposed by
+
+    the ADD, SUB, and MOV instructions (use different types for s and d operands, move a byte into a word, ...).<br>
+
+    a. x = a + b, where a - byte and b - byte<br>
+
+    b. x = a + b, where a - word and b - byte<br>
+
+    c. x = a + b - c, where a - byte, b - word, and c - byte<br>
+
+    d. x = a + b + c, where a - byte and 150 &lt; a &lt; 250, b - byte and 150 &lt; b &lt; 250, c - word.<br>
+
+    e. as exercise d. but a - word
+
+    <br><br>
+
+    
+
+     <b><a href="http://www.cs.ubbcluj.ro/~vancea/asc/lab3-prb-en.htm"></a></b><li><b><a href="http://www.cs.ubbcluj.ro/~vancea/asc/lab3-prb-en.htm">Homework: solve at least 2 problems from this list</a></b>, deadline - this lab.</li><br>
+
+    <li><a href="http://www.cs.ubbcluj.ro/~vancea/asc/index-en.html">Computer Systems Architecture - course page</a></li><a href="http://www.cs.ubbcluj.ro/~vancea/asc/index-en.html">   
+
+    
+
+    
+
+
+
+
+
+</a></body></html>

@@ -1,0 +1,34 @@
+Subject 1 - Gr. 911
+
+1. Let f:(-2/3; +inf)->R, f(x) = 1/(3x+2).
+a) Write the nth order derivative for f (general form).
+b) Write the nth Taylor polynomial at 1 and the remainder Rn(x) using Taylor's formula.
+
+2. Let A = (0;1] x (0;1], f:A->R, f(x,y) = x * sin(x/y) + y * sin(y/x).
+a) int(A), cl(A), bd(A), A is open/closed/neither/both?
+b) Prove that f has limit at (0,0) and find its limit.
+
+3. Let f:R^2->R, f(x,y) = e^(x^2) + y^4 - y^2.
+a) Find the gradient of f at (x,y) (general form).
+b) Find u = nabla f(1,2), v = nabla f(-1,0) and <u,v>.
+c) Find local extremum points.
+
+4. a) Let a e R, f:[1;+inf)->R, f(x) = 1/(x^a * sqrt(1+x^4)). Study the improperly integrability on its domain.
+b) Let A = [0;1] x [0;1]. Compute double integral on A of y*(1-y)*sin(xy) dxdy.
+
+-------
+
+1. a) f^(n)(x) = (-3)^n * n! / (3x+2)^(n+1)
+b) Tn(x) = 1/5 - 3/25*(x-1) + 9/125*(x-1)^2 - 27/625*(x-1)^3 + ... + 1/5 * (-3/5)^n * (x-1)^n.
+It exists c between 1 and x s.t. Rn(x) = (-3)^(n+1) / (3c+2)^(n+2) * (x-1)^(n+1)
+
+2. a) A is neither open nor closed
+int(A) = (0;1)x(0;1), cl(A) = [0;1]x[0;1], bd(A) = ({0;1}x[0;1])U([0;1]x{0;1})
+b) |f(x,y)| <= x+y and apply sandwich theorem, limit is 0.
+
+3. a) nabla f(x,y) = (2*x*e^(x^2), 4*y^3 - 2*y)
+b) u = (2e, 28), v = (-2e, 0), <u,v> = -4*e^2
+c) (0, -1/sqrt(2)), (0,0), (0, 1/sqrt(2)) are stationary points, but only the first and the last ones are minimum points. (0,0) is not extremum
+
+4. a) It's improperly integrable for a > -1. Use corollaries.
+b) cos(1) - 1/2
