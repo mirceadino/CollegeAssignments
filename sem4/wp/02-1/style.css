@@ -1,0 +1,35 @@
+.edge {
+  position: absolute;
+}
+
+#north {
+  background: linear-gradient(to right, transparent, red, transparent);
+  top: 200;
+  left: 200;
+  right: 200;
+  height: 10;
+}
+
+#east {
+  background: linear-gradient(transparent, gold, transparent);
+  top: 200;
+  bottom: 200;
+  right: 200;
+  width: 10;
+}
+
+#south {
+  background: linear-gradient(to right, transparent, blue, transparent);
+  bottom: 200;
+  left: 200;
+  right: 200;
+  height: 10;
+}
+
+#west {
+  background: linear-gradient(transparent, green, transparent);
+  top: 200;
+  bottom: 200;
+  left: 200;
+  width: 10;
+}

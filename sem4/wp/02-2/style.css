@@ -1,0 +1,32 @@
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#blue_line {
+  background-color: orange;
+  height: 5%;
+  transition: top 2s;
+  z-index: 100;
+  position: relative;
+  top: 0;
+}
+
+#blue_line:hover {
+  top: 95%;
+}
+
+#background {
+  background: linear-gradient(yellow, orange);
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: -999999;
+  height: 0%;
+  width: 100%;
+  transition: height 2s;
+}
+
+#blue_line:hover ~ #background {
+  height: 100%;
+}

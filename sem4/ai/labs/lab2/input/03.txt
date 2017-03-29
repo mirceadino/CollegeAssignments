@@ -1,0 +1,3 @@
+ EAT+
+THAT=
+APPLE
