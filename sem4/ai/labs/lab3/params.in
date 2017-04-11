@@ -1,0 +1,5 @@
+# pmutation, pcrossover, num_individs, num_generations
+0.005
+0.010
+40
+100

@@ -1,0 +1,238 @@
+body {
+  height: 100%;
+  margin: 0;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a {
+  vertical-align: middle;
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+}
+
+#top_bar {
+  background-color: purple;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20;
+  z-index: 10;
+}
+
+.top_bar_link img {
+  height: 13px;
+  vertical-align: middle;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20;
+  z-index: 10;
+}
+
+.top_bar_link {
+  display: inline;
+  padding-left: 25;
+  padding-right: 20;
+  color: white;
+  font-size: 13;
+  position: relative;
+  top: 0;
+  height: 20;
+  z-index: 10;
+}
+
+#header_bar {
+  background-color: #fffaff;
+  position: fixed;
+  top: 20;
+  left: 0;
+  right: 0;
+  height: 80;
+  z-index: 10;
+}
+
+#header_bar_left {
+  position: fixed;
+  top: 40;
+  right: 75%;
+}
+
+#header_bar_main {
+  position: fixed;
+  top: 40;
+  left: 25%;
+  width: 35%;
+}
+
+#header_bar_main input {
+  float: left;
+  height: 30;
+  width: 400;
+  margin-left: 1.5%;
+  border: 1px solid DodgerBlue;
+  -webkit-border-radius: 3px;
+}
+
+#header_bar_main button {
+  float: left;
+  height: 30;
+  width: 150;
+  margin-left: 10;
+  margin-right: 1.5%;
+  right: 40%;
+  background-color: DodgerBlue;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 15;
+  border: 1px solid DarkBlue;
+  -webkit-border-radius: 3px;
+}
+
+#header_bar_right {
+  position: fixed;
+  top: 50;
+  right: 15%;
+}
+
+#header_bar_right nav a img {
+  height: 20px;
+  vertical-align: middle;
+}
+
+#header_bar_right nav a {
+  padding-left: 15;
+  padding-right: 20;
+  color: purple;
+  font-size: 14;
+}
+
+#left_bar {
+  background-color: #fffaff;
+  position: fixed;
+  top: 100;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  padding-left: 16%;
+}
+
+#left_bar nav a {
+  display: block;
+  padding: 5;
+}
+
+.main_bar {
+  background-color: #fffaff;
+  position: absolute;
+  top: 100;
+  left: 25%;
+  width: 35%;
+  height: auto;
+}
+
+.main_bar article {
+  display: block;
+  margin: 0;
+  padding: 15;
+  background-color: white;
+  text-align: justify;
+  border: 1px solid Gainsboro;
+  -webkit-border-radius: 3px;
+}
+
+.main_bar article h1 {
+  color: DodgerBlue;
+  font-size: 16;
+  margin: 0;
+}
+
+.main_bar article img {
+  float: left;
+  margin-right: 10;
+  height: 80;
+  width: 80;
+}
+
+.main_bar .ad h1 {
+  color: DodgerBlue;
+  font-size: 20;
+  margin: 0;
+}
+
+.main_bar .ad img {
+  float: right;
+  margin-left: 10;
+  height: 90;
+  width: 150;
+}
+
+#home_main_bar {
+  display: block;
+}
+
+#mail_main_bar {
+  display: none;
+}
+
+#stiri_main_bar {
+  display: none;
+}
+
+#link_mail:hover ~ #home_main_bar {
+  display: none;
+}
+#link_mail:hover ~ #mail_main_bar {
+  display: block;
+}
+
+#link_stiri:hover ~ #home_main_bar {
+  display: none;
+}
+#link_stiri:hover ~ #stiri_main_bar {
+  display: block;
+}
+
+#right_bar {
+  background-color: #fffaff;
+  position: fixed;
+  top: 100;
+  right: 0;
+  width: 40%;
+  height: 100%;
+}
+
+#right_bar article {
+  display: block;
+  margin-left: 20;
+  margin-bottom: 20;
+  width: 350;
+  padding: 15;
+  background-color: white;
+  font-family: Arial, sans-serif;
+  text-align: justify;
+  border: 1px solid Gainsboro;
+  -webkit-border-radius: 3px;
+}
+
+#right_bar article h1 {
+  color: SlateGray;
+  font-size: 18;
+  margin: 0;
+  margin-bottom: 10;
+}
+
+#right_bar nav {
+  margin-left: 20;
+}
+
+#right_bar nav a {
+  padding-left: 15;
+  padding-right: 20;
+  color: purple;
+  font-size: 13;
+}
