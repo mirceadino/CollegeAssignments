@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="bibliography.xsl"?>
+<bibliography>
+  <entry id="1" category="article">
+    <author>Lupea Mihaiela-Ana</author>
+    <title>A note on non-monotonic logics</title>
+    <editor>Seria Mathematica</editor>
+    <num_pages>102</num_pages>
+    <publication_year>1993</publication_year>
+  </entry>
+  <entry id="2" category="book">
+    <author>Lupea Mihaiela-Ana</author>
+    <title>Axiomatization of Credulous Reasoning in Default Logics using Sequent Calculus</title>
+    <editor>Viorel Negru</editor>
+    <num_pages>343</num_pages>
+    <publication_year>2009</publication_year>
+  </entry>
+  <entry id="3" category="book">
+    <author>Tudose Lucian</author>
+    <title>Dynamic Symulation and Experiment on a Sprayer Boom Structure</title>
+    <editor>Seria Mathematica</editor>
+    <num_pages>394</num_pages>
+    <publication_year>2003</publication_year>
+  </entry>
+  <entry id="4" category="report">
+    <author>Tatar Doina</author>
+    <title>Learning Taxonomy for Text Segmentation by Formal Concept Analysis</title>
+    <editor>DBLP</editor>
+    <num_pages>101</num_pages>
+    <publication_year>2010</publication_year>
+  </entry>
+  <entry id="5" category="presentation">
+    <author>Lupea Iulian</author>
+    <title>Automated proving for propositional Post logics</title>
+    <editor>DBLP</editor>
+    <num_pages>39</num_pages>
+    <publication_year>2009</publication_year>
+  </entry>
+  <entry id="6" category="presentation">
+    <author>Moldovan Grigor</author>
+    <title>Versions of default logic</title>
+    <editor>DBLP</editor>
+    <num_pages>41</num_pages>
+    <publication_year>2011</publication_year>
+  </entry>
+  <entry id="7" category="web_link">
+    <author>Cioban Vasile</author>
+    <title>Evaluation of clustering by phonemes</title>
+    <editor>Militon Frentiu</editor>
+    <num_pages>13</num_pages>
+    <publication_year>2005</publication_year>
+  </entry>
+  <entry id="8" category="web_link">
+    <author>Moldovan Grigor</author>
+    <title>Semantic Text Properties Research</title>
+    <editor>Universitas</editor>
+    <num_pages>32</num_pages>
+    <publication_year>2013</publication_year>
+  </entry>
+  <entry id="9" category="software_package">
+    <author>Lupea Iulian</author>
+    <title>Programs for path planning</title>
+    <editor>Miskolc</editor>
+    <num_pages>30</num_pages>
+    <publication_year>2014</publication_year>
+  </entry>
+  <entry id="10" category="software_package">
+    <author>Lupea Mihaiela-Ana</author>
+    <title>Semantic tableaux to compute extensions</title>
+    <editor>Militon Frentiu</editor>
+    <num_pages>39</num_pages>
+    <publication_year>2000</publication_year>
+  </entry>
+  <entry id="11" category="book">
+    <author>Mihis Andreea Diana</author>
+    <title>Logici clasice si circuite logice</title>
+    <editor>Casa de Editura</editor>
+    <num_pages>293</num_pages>
+    <publication_year>2008</publication_year>
+  </entry>
+  <entry id="12" category="article">
+    <author>Lupea Iulian</author>
+    <title>Limbaje formale si automate</title>
+    <editor>Casa de Editura</editor>
+    <num_pages>109</num_pages>
+    <publication_year>2003</publication_year>
+  </entry>
+</bibliography>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript">
+function repImg(image) {
+  document.getElementById("large").src = image.src;
+  }
+  </script>
+
+  <title>
+  </title>
+</head>
+
+<body>
+  <div class="section">
+    <div>
+      <img id="piglet_1" src="media/piglet_1.jpg" class="thumbnail" name="piglet_1" onmouseover="repImg(this);">
+    </div>
+
+
+    <div>
+      <img id="piglet_2" src="media/piglet_2.jpg" class="thumbnail" name="piglet_2" onmouseover="repImg(this);">
+    </div>
+
+
+    <div>
+      <img id="piglet_3" src="media/piglet_3.jpg" class="thumbnail" name="piglet_3" onmouseover="repImg(this);">
+    </div>
+
+
+    <div>
+      <img id="piglet_4" src="media/piglet_4.jpg" class="thumbnail" name="piglet_4" onmouseover="repImg(this);">
+    </div>
+
+
+    <div>
+      <img id="piglet_5" src="media/piglet_5.jpg" class="thumbnail" name="piglet_5" onmouseover="repImg(this);">
+    </div>
+  </div>
+
+
+  <div class="section">
+    <img id="large" name="large" src="media/piglet_1.jpg">
+  </div>
+</body>
+</html>
