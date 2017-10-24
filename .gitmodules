@@ -1,3 +1,6 @@
 [submodule "sem5/pdp"]
 	path = sem5/pdp
 	url = https://github.com/mirceadino/CollegeAssignments-Parallel-Distributed-Programming
+[submodule "sem5/pkc"]
+	path = sem5/pkc
+	url = https://github.com/mirceadino/CollegeAssignments-Public-Key-Cryptography
