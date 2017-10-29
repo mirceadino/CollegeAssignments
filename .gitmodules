@@ -4,3 +4,6 @@
 [submodule "sem5/pkc"]
 	path = sem5/pkc
 	url = https://github.com/mirceadino/CollegeAssignments-Public-Key-Cryptography
+[submodule "sem5/pc"]
+	path = sem5/pc
+	url = https://github.com/mirceadino/job-seeker
