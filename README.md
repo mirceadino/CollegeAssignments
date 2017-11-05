@@ -12,7 +12,7 @@ A collection of Computer Science exercises and assignments at [Babes-Bolyai Univ
 * [Databases](/sem3/db/) (semester 3)
 * Database Management Systems (semester 4)
 * [Data Structures and Algorithms](/sem2/sda/project/) (semester 2)
-* Design Patterns (semester 5)
+* [Design Patterns](https://github.com/mirceadino/iStudent) (semester 5)
 * Dynamical Systems (semester 2)
 * [Formal Languages and Compiler Design](https://github.com/mirceadino/formal-languages-and-compiler-design) (semester 5)
 * [Fundamentals of Programming](/sem1/fp/labs/) (semester 1)
