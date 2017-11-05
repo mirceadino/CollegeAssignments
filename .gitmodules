@@ -10,3 +10,6 @@
 [submodule "sem5/flcd"]
 	path = sem5/flcd
 	url = https://github.com/mirceadino/formal-languages-and-compiler-design
+[submodule "sem5/dp"]
+	path = sem5/dp
+	url = https://github.com/mirceadino/iStudent
