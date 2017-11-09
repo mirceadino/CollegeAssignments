@@ -1,9 +1,9 @@
 [submodule "sem5/pdp"]
 	path = sem5/pdp
-	url = https://github.com/mirceadino/CollegeAssignments-Parallel-Distributed-Programming
+	url = https://github.com/mirceadino/parallel-and-distributed-programming
 [submodule "sem5/pkc"]
 	path = sem5/pkc
-	url = https://github.com/mirceadino/CollegeAssignments-Public-Key-Cryptography
+	url = https://github.com/mirceadino/public-key-cryptography
 [submodule "sem5/pc"]
 	path = sem5/pc
 	url = https://github.com/mirceadino/job-seeker
