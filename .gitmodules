@@ -10,3 +10,6 @@
 [submodule "sem5/dp"]
 	path = sem5/dp
 	url = https://github.com/mirceadino/iStudent
+[submodule "sem5/pc"]
+	path = sem5/pc
+	url = https://github.com/mirceadino/job-seeker
