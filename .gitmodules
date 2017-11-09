@@ -4,9 +4,6 @@
 [submodule "sem5/pkc"]
 	path = sem5/pkc
 	url = https://github.com/mirceadino/public-key-cryptography
-[submodule "sem5/pc"]
-	path = sem5/pc
-	url = https://github.com/mirceadino/job-seeker
 [submodule "sem5/flcd"]
 	path = sem5/flcd
 	url = https://github.com/mirceadino/formal-languages-and-compiler-design
