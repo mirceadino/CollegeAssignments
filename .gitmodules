@@ -13,3 +13,6 @@
 [submodule "sem5/pc"]
 	path = sem5/pc
 	url = https://github.com/mirceadino/job-seeker
+[submodule "sem5/mobile"]
+	path = sem5/mobile
+	url = https://github.com/mirceadino/concorde

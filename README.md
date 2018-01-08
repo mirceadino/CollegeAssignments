@@ -20,7 +20,7 @@ A collection of Computer Science exercises and assignments at [Babes-Bolyai Univ
 * [Graph Algorithms](/sem2/ag/labs/) (semester 2)
 * [Linear Algebra](/sem1/algebra/) (semester 1)
 * [Logic and Functional Programming](/sem3/plf/) (semester 3)
-* Mobile Application Programming (semester 5)
+* [Mobile Application Programming](https://github.com/mirceadino/concorde) (semester 5)
 * [Object-Oriented Programming](/sem2/oop/labs/) (semester 2)
 * [Operating Systems](/sem2/os/) (semester 2)
 * [Parallel and Distributed Programming](https://github.com/mirceadino/parallel-and-distributed-programming) (semester 5)
