@@ -16,3 +16,6 @@
 [submodule "sem5/mobile"]
 	path = sem5/mobile
 	url = https://github.com/mirceadino/concorde
+[submodule "sem6/ssvv"]
+	path = sem6/ssvv
+	url = https://github.com/mirceadino/SSVV_Prj_1_FamilyDoctor
