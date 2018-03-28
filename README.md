@@ -32,7 +32,7 @@ A collection of Computer Science exercises and assignments at [Babes-Bolyai Univ
 * [Probability and Statistics](/sem3/ps/LabSolutions) (semester 3)
 * [Public-Key Cryptography](https://github.com/mirceadino/public-key-cryptography) (semester 5)
 * Software Engineering (semester 4)
-* Software Systems Verification and Validation (semester 6)
+* [Software Systems Verification and Validation](https://github.com/mirceadino/SSVV_Prj_1_FamilyDoctor) (semester 6)
 * Systems for Design and Implementation (semester 4)
 * [Team Project](https://github.com/mirceadino/job-seeker) (semester 5)
 * [Web Programming](/sem4/wp/) (semester 4)
