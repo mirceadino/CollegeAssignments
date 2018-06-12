@@ -26,7 +26,7 @@ A collection of Computer Science exercises and assignments at [Babes-Bolyai Univ
 * Numerical Analysis (semester 6)
 * [Object-Oriented Programming](/sem2/oop/labs/) (semester 2)
 * [Operating Systems](/sem2/os/) (semester 2)
-* Operations Research (semester 6)
+* Convex Optimization (semester 6)
 * [Parallel and Distributed Programming](https://github.com/mirceadino/parallel-and-distributed-programming) (semester 5)
 * Preparation of Bachelor Thesis (semester 6)
 * [Probability and Statistics](/sem3/ps/LabSolutions) (semester 3)
